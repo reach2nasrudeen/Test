@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/miHome"
+        android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_home"
         android:title="" />
 
     <item
-        android:id="@+id/miSearch"
+        android:id="@+id/navigation_statistics"
         android:icon="@drawable/ic_search"
         android:title="" />
 
     <item
-        android:id="@+id/placeholder"
+        android:id="@+id/navigation_action"
         android:title="" />
 
     <item
-        android:id="@+id/miProfile"
-        android:icon="@drawable/ic_person"
-        android:title="" />
-
-    <item
-        android:id="@+id/miSettings"
+        android:id="@+id/navigation_card_listing"
         android:icon="@drawable/ic_settings"
+        android:title="" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_person"
         android:title="" />
 </menu>
