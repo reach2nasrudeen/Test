@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_vd_card"
         android:title="" />
 
     <item
         android:id="@+id/navigation_statistics"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_vd_statistics"
         android:title="" />
 
     <item
@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/navigation_card_listing"
-        android:icon="@drawable/ic_settings"
+        android:icon="@drawable/ic_vd_wallet"
         android:title="" />
 
     <item

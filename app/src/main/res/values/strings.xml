@@ -5,4 +5,14 @@
     <string name="text_search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_frequently_used">Frequently Used</string>
+    <string name="text_mobile_recharge">Mobile Recharge</string>
+    <string name="text_bill_payment">Bill Payments</string>
+    <string name="text_bank_transfer">Bank Transfer</string>
+    <string name="text_request_money">Request Money</string>
+    <string name="text_transfer_money">Transfer Money</string>
+    <string name="text_service">Service</string>
+    <string name="text_open_account">Open Account</string>
+    <string name="text_manage_cards">Manage Cards</string>
+    <string name="text_all_cards">All Cards</string>
 </resources>

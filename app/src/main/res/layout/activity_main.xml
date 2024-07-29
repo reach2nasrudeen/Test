@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main"
@@ -30,8 +30,8 @@
             app:backgroundTint="@android:color/white"
             app:contentInsetStart="0dp"
             app:elevation="10dp"
-            app:fabCradleMargin="20dp"
-            app:fabCradleRoundedCornerRadius="20dp"
+            app:fabCradleMargin="10dp"
+            app:fabCradleRoundedCornerRadius="10dp"
             app:fabCradleVerticalOffset="10dp">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -50,9 +50,13 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue"
             android:contentDescription="@string/text_home"
-            android:src="@drawable/ic_add"
-            app:layout_anchor="@id/bottomAppBar" />
+            android:src="@drawable/ic_vd_send"
+            app:backgroundTint="@color/white"
+            app:borderWidth="2dp"
+            app:layout_anchor="@id/bottomAppBar"
+            app:tint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextRegular">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextMedium">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextBold">
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+
+    <declare-styleable name="CustomItemView">
+        <attr name="text" format="string" />
+        <attr name="icon" format="reference" />
+        <attr name="card_bg" format="reference" />
+    </declare-styleable>
+
+<!--    <declare-styleable name="ServiceItemView" >-->
+<!--        <attr name="text" format="string" />-->
+<!--        <attr name="icon" format="reference" />-->
+<!--        <attr name="card_bg" format="reference" />-->
+<!--    </declare-styleable>-->
+</resources>

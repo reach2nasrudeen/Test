@@ -1,6 +1,7 @@
-package com.interview.test
+package com.interview.test.ui
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -8,13 +9,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.interview.test.R
 import com.interview.test.databinding.ActivityMainBinding
+import com.interview.test.utils.getDrawableRes
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
-    private var previousSelectedItem: Int = R.id.navigation_dashboard
+    private var previousSelectedItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,14 +46,20 @@ class MainActivity : AppCompatActivity() {
 //
 //            // Clear the back stack by popping to the selected destination
 //            navController.popBackStack(item.itemId, false)
+            binding.fab.setImageDrawable(getDrawableRes(if (item.itemId == R.id.navigation_card_listing) R.drawable.ic_add else R.drawable.ic_vd_send))
 
             when (item.itemId) {
+
                 R.id.navigation_action -> {
                     Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
+                    previousSelectedItem?.let { NavigationUI.onNavDestinationSelected(it, navController) }
                 }
+
                 R.id.navigation_statistics -> {
                     Toast.makeText(this, "Test Stats", Toast.LENGTH_SHORT).show()
+                    previousSelectedItem?.let { NavigationUI.onNavDestinationSelected(it, navController) }
                 }
+
                 R.id.navigation_profile -> {
                     Toast.makeText(this, "Test Profile", Toast.LENGTH_SHORT).show()
                 }
@@ -59,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     NavigationUI.onNavDestinationSelected(item, navController)
                 }
             }
-            this.previousSelectedItem = currentSelectedItem
+            this.previousSelectedItem = item
 
             true
         }

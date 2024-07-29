@@ -6,22 +6,22 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.interview.test.DashboardFragment" />
+        android:name="com.interview.test.ui.dashboard.DashboardFragment" />
 
 
     <fragment
         android:id="@+id/navigation_card_summary"
-        android:name="com.interview.test.CardSummaryFragment" />
+        android:name="com.interview.test.ui.dashboard.CardSummaryFragment" />
 
 
     <fragment
         android:id="@+id/navigation_card_listing"
-        android:name="com.interview.test.CardListingFragment" />
+        android:name="com.interview.test.ui.cards.CardListingFragment" />
 
 
     <fragment
         android:id="@+id/navigation_add_card"
-        android:name="com.interview.test.AddCardFragment" />
+        android:name="com.interview.test.ui.cards.AddCardFragment" />
 
 
 </navigation>

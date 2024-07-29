@@ -16,4 +16,12 @@
     <color name="view_grey">#F6F6F6</color>
     <color name="dash_grey">#EFEFEF</color>
     <color name="bg_grey">#EEEEEE</color>
+    <color name="green">#33d28a</color>
+    <color name="green_trans">#4033d28a</color>
+    <color name="red">#fc5552</color>
+    <color name="red_trans">#33fc5552</color>
+
+    <color name="blue">#4d76df</color>
+
+    <color name="card_bg_light">#f8f8f8</color>
 </resources>

@@ -1,19 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".DashboardFragment">
+        android:orientation="vertical"
+        tools:context=".ui.dashboard.DashboardFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cards"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/black"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_card" />
 
-    </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_frequently_used"
+            android:textSize="18sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.interview.test.FrequentItemView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-5dp"
+                    android:layout_marginEnd="5dp"
+                    app:card_bg="@color/green_trans"
+                    app:icon="@drawable/ic_vd_phone"
+                    app:text="@string/text_mobile_recharge" />
+
+                <com.interview.test.FrequentItemView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    app:card_bg="@color/green_trans"
+                    app:icon="@drawable/ic_vd_phone"
+                    app:text="@string/text_bill_payment" />
+
+                <com.interview.test.FrequentItemView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    app:card_bg="@color/green_trans"
+                    app:icon="@drawable/ic_vd_phone"
+                    app:text="@string/text_bank_transfer" />
+
+                <com.interview.test.FrequentItemView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    app:card_bg="@color/green_trans"
+                    app:icon="@drawable/ic_vd_phone"
+                    app:text="@string/text_request_money" />
+
+                <com.interview.test.FrequentItemView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    app:card_bg="@color/green_trans"
+                    app:icon="@drawable/ic_vd_phone"
+                    app:text="@string/text_transfer_money" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_service"
+            android:textSize="18sp" />
+
+        <GridLayout
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="1">
+
+            <com.interview.test.ServiceItemView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                app:card_bg="@color/red_trans"
+                app:icon="@drawable/ic_vd_phone"
+                app:text="@string/text_open_account" />
+
+            <com.interview.test.ServiceItemView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                app:card_bg="@color/green_trans"
+                app:icon="@drawable/ic_vd_phone"
+                app:text="@string/text_manage_cards" />
+        </GridLayout>
+    </LinearLayout>
 </layout>
