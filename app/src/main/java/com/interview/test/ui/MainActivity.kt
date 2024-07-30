@@ -3,8 +3,11 @@ package com.interview.test.ui
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -12,11 +15,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.interview.test.R
 import com.interview.test.databinding.ActivityMainBinding
 import com.interview.test.utils.getDrawableRes
+import com.interview.test.viewmodel.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
+    private val viewModel: HomeViewModel by viewModel<HomeViewModel>()
     private var previousSelectedItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +36,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
-            Toast.makeText(this, "Test Action", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Test Action", Toast.LENGTH_SHORT).show()
+            if (previousSelectedItem?.itemId == R.id.navigation_card_listing) {
+                navController.navigate(R.id.navigation_add_card)
+                Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Test 2", Toast.LENGTH_SHORT).show()
+            }
         }
         (binding.navHostFragment.getFragment() as? NavHostFragment)?.navController?.let {
             navController = it
             binding.bottomNavigationView.setupWithNavController(navController)
         }
 
+        viewModel.showBottomBar.observe(this) {
+            binding.bottomAppBar.isVisible = it
+            binding.fab.isVisible = it
+        }
+
+
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             val currentSelectedItem = item.itemId
+
+            Timber.e("came here")
 
 //            if (this.previousSelectedItem != currentSelectedItem) {
 //                navController.popBackStack(previousSelectedItem, false)
@@ -51,13 +72,29 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.navigation_action -> {
-                    Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
-                    previousSelectedItem?.let { NavigationUI.onNavDestinationSelected(it, navController) }
+                    if (item.itemId == R.id.navigation_card_listing) {
+//                        viewModel.updateBottomBar(false)
+                        navController.navigate(R.id.navigation_add_card)
+                        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Test 2", Toast.LENGTH_SHORT).show()
+                    }
+                    previousSelectedItem?.let {
+                        NavigationUI.onNavDestinationSelected(
+                            it,
+                            navController
+                        )
+                    }
                 }
 
                 R.id.navigation_statistics -> {
                     Toast.makeText(this, "Test Stats", Toast.LENGTH_SHORT).show()
-                    previousSelectedItem?.let { NavigationUI.onNavDestinationSelected(it, navController) }
+                    previousSelectedItem?.let {
+                        NavigationUI.onNavDestinationSelected(
+                            it,
+                            navController
+                        )
+                    }
                 }
 
                 R.id.navigation_profile -> {

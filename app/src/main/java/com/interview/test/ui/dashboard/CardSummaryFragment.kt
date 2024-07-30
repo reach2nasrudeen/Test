@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.interview.test.R
 import com.interview.test.databinding.FragmentCardListingBinding
 import com.interview.test.databinding.FragmentCardSummaryBinding
@@ -31,6 +32,18 @@ class CardSummaryFragment : Fragment() {
     ): View {
         _binding = FragmentCardSummaryBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbar.apply {
+            ivBack.isVisible = true
+            textTitle.setText(R.string.text_card_details)
+        }
+
+        viewModel.getCardSummary()
     }
 
     override fun onDestroyView() {

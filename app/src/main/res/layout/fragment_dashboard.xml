@@ -9,6 +9,9 @@
         android:orientation="vertical"
         tools:context=".ui.dashboard.DashboardFragment">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_cards"
@@ -96,9 +99,9 @@
             android:textSize="18sp" />
 
         <GridLayout
-            android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:columnCount="2"
             android:rowCount="1">
 

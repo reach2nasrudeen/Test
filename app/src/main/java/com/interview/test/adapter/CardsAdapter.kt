@@ -10,6 +10,8 @@ import com.interview.test.utils.getRandomColor
 
 class CardsAdapter(private val items: List<CardItem>) : BaseRecyclerViewAdapter<CardItem>() {
 
+    var itemClickListener: ItemClickListener<CardItem>? = null
+
     override fun layoutId(position: Int): Int = R.layout.item_card
 
     override fun onBind(binding: ViewDataBinding, position: Int) {
@@ -24,5 +26,14 @@ class CardsAdapter(private val items: List<CardItem>) : BaseRecyclerViewAdapter<
         }
     }
 
+    override fun onItemClick(position: Int) {
+        itemClickListener?.onItemClick(items[position])
+    }
+
     override fun getItemCount(): Int = items.size
+
+
+    interface ItemClickListener<T> {
+        fun onItemClick(item: T)
+    }
 }

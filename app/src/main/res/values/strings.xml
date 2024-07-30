@@ -3,8 +3,6 @@
 
     <string name="text_home">Home</string>
     <string name="text_search">Search</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_frequently_used">Frequently Used</string>
     <string name="text_mobile_recharge">Mobile Recharge</string>
     <string name="text_bill_payment">Bill Payments</string>
@@ -15,4 +13,6 @@
     <string name="text_open_account">Open Account</string>
     <string name="text_manage_cards">Manage Cards</string>
     <string name="text_all_cards">All Cards</string>
+    <string name="text_add_new_card">Add New Card</string>
+    <string name="text_card_details">Card Details</string>
 </resources>

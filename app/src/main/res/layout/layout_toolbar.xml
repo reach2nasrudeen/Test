@@ -9,7 +9,7 @@
         android:background="@color/white">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_"
+            android:id="@+id/iv_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
@@ -20,7 +20,9 @@
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_vd_arrow_back" />
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_vd_arrow_back"
+            tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_title"
@@ -33,11 +35,13 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_alert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="15dp"
-            app:srcCompat="@drawable/ic_vd_alert_1" />
+            app:srcCompat="@drawable/ic_vd_alert_1"
+            tools:visibility="visible" />
 
     </androidx.appcompat.widget.Toolbar>
 </layout>

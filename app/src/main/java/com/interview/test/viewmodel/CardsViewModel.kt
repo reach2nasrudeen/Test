@@ -9,12 +9,8 @@ import timber.log.Timber
 
 class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel() {
 
-    init {
-        getCardSummary()
-    }
 
-
-    private fun getCardSummary() {
+    fun getCardSummary() {
         viewModelScope.launch {
             cardsRepository.getCardSummary().collect {
                 Timber.e("Response---->${it}")
