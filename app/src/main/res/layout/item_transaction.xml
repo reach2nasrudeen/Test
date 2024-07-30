@@ -57,7 +57,7 @@
                 android:id="@+id/text_transaction_date"
                 style="@style/TextRegular"
                 android:layout_width="wrap_content"
-                android:text="@{transaction.date}"
+                app:transaction_date="@{transaction.date}"
                 android:layout_height="wrap_content"
                 tools:text="27-Apr | 08:25pm" />
         </LinearLayout>

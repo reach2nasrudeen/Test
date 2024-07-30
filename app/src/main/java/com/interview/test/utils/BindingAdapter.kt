@@ -52,3 +52,9 @@ fun setMaskedCardNumber(textView: AppCompatTextView, cardNumber: String?) {
     textView.text = maskCardNumber(cardNumber ?: Constants.NOT_AVAILABLE)
 }
 
+
+@BindingAdapter("transaction_date")
+fun setTransactionDate(textView: AppCompatTextView, transactionDate: String?) {
+    textView.text = transactionDate?.let { formatDateTime(it) } ?: Constants.NOT_AVAILABLE
+}
+
