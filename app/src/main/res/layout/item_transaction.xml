@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="transaction"
+            type="com.interview.test.model.Transaction" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_transaction_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:outlineSpotShadowColor="@android:color/transparent"
+            app:cardBackgroundColor="@color/bg_grey"
+            app:cardCornerRadius="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_transaction_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:srcCompat="@drawable/ic_vd_arrow_back" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_toStartOf="@+id/text_transaction_amount"
+            android:layout_toEndOf="@+id/card_transaction_type"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_transaction_name"
+                style="@style/TextMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@{transaction.merchant}"
+                tools:text="Uber Ride" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_transaction_date"
+                style="@style/TextRegular"
+                android:layout_width="wrap_content"
+                android:text="@{transaction.date}"
+                android:layout_height="wrap_content"
+                tools:text="27-Apr | 08:25pm" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_transaction_amount"
+            style="@style/TextBold"
+            android:layout_width="wrap_content"
+            app:amount="@{transaction.amount}"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            tools:text="-$574.00" />
+
+    </RelativeLayout>
+</layout>

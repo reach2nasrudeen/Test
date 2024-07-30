@@ -9,10 +9,8 @@ import androidx.core.view.isVisible
 import com.interview.test.R
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding
-import com.interview.test.model.CardItem
 import com.interview.test.viewmodel.CardsViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -43,9 +41,13 @@ class CardListingFragment : Fragment() {
             ivBack.isVisible = true
             textTitle.setText(R.string.text_all_cards)
         }
-        cardsAdapter = CardsAdapter(viewModel.getMockCards())
+        cardsAdapter = CardsAdapter(emptyList())
 
         binding.rvCards.adapter = cardsAdapter
+
+        viewModel.cards.observe(viewLifecycleOwner) {
+            cardsAdapter?.updateData(it)
+        }
     }
 
 

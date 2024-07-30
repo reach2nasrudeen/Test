@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.interview.test.R
+import com.interview.test.adapter.TransactionsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding
 import com.interview.test.databinding.FragmentCardSummaryBinding
+import com.interview.test.model.Transaction
 import com.interview.test.viewmodel.CardsViewModel
 import com.interview.test.viewmodel.DashboardViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 
 /**
@@ -26,11 +29,17 @@ class CardSummaryFragment : Fragment() {
     private val binding
         get() = _binding!!
 
+    private var transactionsAdapter: TransactionsAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCardSummaryBinding.inflate(inflater, container, false)
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
         return binding.root
     }
 
@@ -43,12 +52,20 @@ class CardSummaryFragment : Fragment() {
             textTitle.setText(R.string.text_card_details)
         }
 
+        transactionsAdapter = TransactionsAdapter()
+        binding.rvTransactions.adapter = transactionsAdapter
+
         viewModel.getCardSummary()
+
+        viewModel.transactions.observe(viewLifecycleOwner) {
+            transactionsAdapter?.updateData(it)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        transactionsAdapter = null
     }
 
 }

@@ -15,4 +15,9 @@
     <string name="text_all_cards">All Cards</string>
     <string name="text_add_new_card">Add New Card</string>
     <string name="text_card_details">Card Details</string>
+    <string name="text_current_balance">Current Balance</string>
+    <string name="text_transaction_history">Transactions History</string>
+    <string name="text_day">Day</string>
+    <string name="text_month">Month</string>
+    <string name="text_yearly">Yearly</string>
 </resources>

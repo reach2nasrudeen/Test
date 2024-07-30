@@ -8,7 +8,7 @@ import com.interview.test.model.CardItem
 import com.interview.test.utils.calculateLuminance
 import com.interview.test.utils.getRandomColor
 
-class CardsAdapter(private val items: List<CardItem>) : BaseRecyclerViewAdapter<CardItem>() {
+class CardsAdapter(private var items: List<CardItem>) : BaseRecyclerViewAdapter<CardItem>() {
 
     var itemClickListener: ItemClickListener<CardItem>? = null
 
@@ -16,11 +16,11 @@ class CardsAdapter(private val items: List<CardItem>) : BaseRecyclerViewAdapter<
 
     override fun onBind(binding: ViewDataBinding, position: Int) {
         (binding as? ItemCardBinding)?.apply {
-            binding.cardItem = items[position]
+            val cardItem = items[position]
+            binding.cardItem = cardItem
             if (position > 0) {
-                val backgroundColor = getRandomColor()
-                binding.card.setCardBackgroundColor(backgroundColor)
-                binding.luminance = calculateLuminance(backgroundColor)
+                binding.card.setCardBackgroundColor(cardItem.backgroundColor)
+                binding.luminance = calculateLuminance(cardItem.backgroundColor)
             }
             executePendingBindings()
         }
@@ -32,6 +32,10 @@ class CardsAdapter(private val items: List<CardItem>) : BaseRecyclerViewAdapter<
 
     override fun getItemCount(): Int = items.size
 
+    override fun updateData(data: List<CardItem>) {
+        items = data
+        notifyAdapter()
+    }
 
     interface ItemClickListener<T> {
         fun onItemClick(item: T)

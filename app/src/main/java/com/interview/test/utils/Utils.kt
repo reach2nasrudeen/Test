@@ -7,6 +7,9 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import java.text.NumberFormat
+import java.util.Locale
+import kotlin.math.absoluteValue
 import kotlin.math.pow
 import kotlin.random.Random
 
@@ -39,7 +42,6 @@ fun calculateLuminance(color: Int): Double {
 }
 
 
-
 @BindingAdapter("bg_luminance")
 fun setTextColorBasedOnBackground(textView: AppCompatTextView, luminance: Double) {
 // Set text color based on luminance
@@ -50,4 +52,30 @@ fun setTextColorBasedOnBackground(textView: AppCompatTextView, luminance: Double
         // Dark background - set text color to white
         textView.setTextColor(Color.WHITE)
     }
+}
+
+@BindingAdapter("amount")
+fun setAmountText(textView: AppCompatTextView, amount: Double?) {
+    val numberFormat = NumberFormat.getCurrencyInstance(Locale.US)
+    val formattedAmount = (amount ?: 0.0).let {
+        if (it < 0) {
+            "-${numberFormat.format(it.absoluteValue)}"
+        } else {
+            "+${numberFormat.format(it)}"
+        }
+    }
+    textView.text = formattedAmount
+}
+
+@BindingAdapter("balance")
+fun setBalanceText(textView: AppCompatTextView, amount: Double?) {
+    val numberFormat = NumberFormat.getCurrencyInstance(Locale.US)
+    val formattedAmount = (amount ?: 0.0).let {
+        if (it < 0) {
+            "-${numberFormat.format(it.absoluteValue)}"
+        } else {
+            numberFormat.format(it)
+        }
+    }
+    textView.text = formattedAmount
 }

@@ -1,5 +1,7 @@
 package com.interview.test.model
 
+import com.interview.test.utils.getRandomColor
+
 data class CardItem(
     val bankName: String,
     val cardNumber: String,
@@ -7,8 +9,9 @@ data class CardItem(
     val cardExpMonth: String,
     val cardExpYear: String,
     val cardHolderName: String? = null,
-    val cardType: CardType = CardType.VISA
+    val cardType: CardType = CardType.VISA,
 ) {
+    val backgroundColor: Int by lazy { getRandomColor() }
     fun formattedCardNumber(): String {
         return cardNumber
     }

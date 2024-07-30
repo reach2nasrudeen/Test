@@ -40,10 +40,14 @@ class DashboardFragment : Fragment() {
 
         binding.toolbar.ivMenu.isVisible = true
 
-        cardsAdapter = CardsAdapter(viewModel.getMockCards())
+        cardsAdapter = CardsAdapter(emptyList())
         cardsAdapter?.itemClickListener = cardItemClickListener
 
         binding.rvCards.adapter = cardsAdapter
+
+        viewModel.cards.observe(viewLifecycleOwner) {
+            cardsAdapter?.updateData(it)
+        }
     }
 
     private val cardItemClickListener = object : CardsAdapter.ItemClickListener<CardItem> {
