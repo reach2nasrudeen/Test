@@ -22,6 +22,7 @@
     <color name="red_trans">#33fc5552</color>
 
     <color name="blue">#4d76df</color>
+    <color name="card_bg">#262626</color>
 
     <color name="card_bg_light">#f8f8f8</color>
 </resources>

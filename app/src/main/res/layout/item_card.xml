@@ -14,9 +14,11 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/card_bg"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp">
 
@@ -74,6 +76,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_card_holder_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

@@ -1,6 +1,7 @@
 package com.interview.test.di
 
 import android.content.Context
+import com.interview.test.BuildConfig
 import com.interview.test.CardsApp
 import com.interview.test.base.Constants
 import com.interview.test.network.CardsApiService
@@ -30,7 +31,7 @@ val networkModule = module {
     // Provide HttpLoggingInterceptor
     single {
         HttpLoggingInterceptor().apply {
-//            level = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
+            level = if (BuildConfig.DEBUG) Level.BODY else Level.NONE
         }
     }
 

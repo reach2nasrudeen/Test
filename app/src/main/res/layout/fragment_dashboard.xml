@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.interview.test.FrequentItemView
+                <com.interview.test.widget.FrequentItemView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="-5dp"
@@ -51,7 +51,7 @@
                     app:icon="@drawable/ic_vd_phone"
                     app:text="@string/text_mobile_recharge" />
 
-                <com.interview.test.FrequentItemView
+                <com.interview.test.widget.FrequentItemView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -59,7 +59,7 @@
                     app:icon="@drawable/ic_vd_phone"
                     app:text="@string/text_bill_payment" />
 
-                <com.interview.test.FrequentItemView
+                <com.interview.test.widget.FrequentItemView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -67,7 +67,7 @@
                     app:icon="@drawable/ic_vd_phone"
                     app:text="@string/text_bank_transfer" />
 
-                <com.interview.test.FrequentItemView
+                <com.interview.test.widget.FrequentItemView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -75,7 +75,7 @@
                     app:icon="@drawable/ic_vd_phone"
                     app:text="@string/text_request_money" />
 
-                <com.interview.test.FrequentItemView
+                <com.interview.test.widget.FrequentItemView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -102,7 +102,7 @@
             android:columnCount="2"
             android:rowCount="1">
 
-            <com.interview.test.ServiceItemView
+            <com.interview.test.widget.ServiceItemView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
@@ -110,7 +110,7 @@
                 app:icon="@drawable/ic_vd_phone"
                 app:text="@string/text_open_account" />
 
-            <com.interview.test.ServiceItemView
+            <com.interview.test.widget.ServiceItemView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
