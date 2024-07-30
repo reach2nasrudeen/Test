@@ -12,6 +12,10 @@
             type="com.interview.test.model.CardItem" />
 
         <variable
+            name="showCardMemberName"
+            type="Boolean" />
+
+        <variable
             name="luminance"
             type="Double" />
 
@@ -54,9 +58,9 @@
                     android:id="@+id/text_card_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{cardItem.formattedCardNumber()}"
                     android:textColor="@color/white"
                     app:bg_luminance="@{luminance}"
+                    app:card_number="@{cardItem.cardNumber}"
                     tools:text="**** **** **** 1690" />
 
                 <RelativeLayout
@@ -80,7 +84,7 @@
                         android:layout_alignParentEnd="true"
                         android:text="@{cardItem.cardExpiryData()}"
                         android:textColor="@color/white"
-                        android:visibility="@{cardItem.isCardHolderNameAvailable() ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{showCardMemberName ? View.VISIBLE : View.GONE}"
                         app:bg_luminance="@{luminance}"
                         tools:ignore="RelativeOverlap"
                         tools:text="Exp 01/22" />
@@ -91,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="@{cardItem.isCardHolderNameAvailable() ? cardItem.cardHolderName : cardItem.cardExpiryData()}"
+                android:text="@{showCardMemberName ? cardItem.cardHolderName : cardItem.cardExpiryData()}"
                 android:textColor="@color/white"
                 app:bg_luminance="@{luminance}"
                 tools:text="Exp 01/22" />

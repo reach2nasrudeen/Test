@@ -1,7 +1,6 @@
 [versions]
 agp = "8.5.1"
 kotlin = "1.9.0"
-kotlinKapt = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -15,6 +14,7 @@ retrofit = "2.9.0"
 okHttpLogging = "4.12.0"
 koinAndroid ="3.5.6"
 timber = "5.0.1"
+mpAndroidChart = "v3.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,7 +32,7 @@ retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ver
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpLogging" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinAndroid" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
-#androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "navigationFragment" }
+mp-android-chart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpAndroidChart" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

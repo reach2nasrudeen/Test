@@ -12,20 +12,26 @@ import com.interview.test.R
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentDashboardBinding
 import com.interview.test.model.CardItem
+import com.interview.test.utils.toModelString
 import com.interview.test.viewmodel.DashboardViewModel
+import com.interview.test.viewmodel.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
  */
 class DashboardFragment : Fragment() {
 
+    private val homeViewModel: HomeViewModel by activityViewModel<HomeViewModel>()
+
     private var cardsAdapter: CardsAdapter? = null
     private var _binding: FragmentDashboardBinding? = null
     private val binding
         get() = _binding!!
 
-    private val viewModel: DashboardViewModel by viewModel<DashboardViewModel>()
+//    private val viewModel: DashboardViewModel by viewModel<DashboardViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +46,13 @@ class DashboardFragment : Fragment() {
 
         binding.toolbar.ivMenu.isVisible = true
 
-        cardsAdapter = CardsAdapter(emptyList())
+        cardsAdapter = CardsAdapter(showMemberName = false)
         cardsAdapter?.itemClickListener = cardItemClickListener
 
         binding.rvCards.adapter = cardsAdapter
 
-        viewModel.cards.observe(viewLifecycleOwner) {
+        homeViewModel.cards.observe(viewLifecycleOwner) {
+            Timber.e(it.toModelString())
             cardsAdapter?.updateData(it)
         }
     }

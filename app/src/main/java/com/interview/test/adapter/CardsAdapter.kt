@@ -6,9 +6,12 @@ import com.interview.test.base.BaseRecyclerViewAdapter
 import com.interview.test.databinding.ItemCardBinding
 import com.interview.test.model.CardItem
 import com.interview.test.utils.calculateLuminance
-import com.interview.test.utils.getRandomColor
 
-class CardsAdapter(private var items: List<CardItem>) : BaseRecyclerViewAdapter<CardItem>() {
+class CardsAdapter(
+    private val showMemberName: Boolean,
+) : BaseRecyclerViewAdapter<CardItem>() {
+
+    private var items: List<CardItem> = emptyList()
 
     var itemClickListener: ItemClickListener<CardItem>? = null
 
@@ -18,6 +21,7 @@ class CardsAdapter(private var items: List<CardItem>) : BaseRecyclerViewAdapter<
         (binding as? ItemCardBinding)?.apply {
             val cardItem = items[position]
             binding.cardItem = cardItem
+            binding.showCardMemberName = showMemberName
             if (position > 0) {
                 binding.card.setCardBackgroundColor(cardItem.backgroundColor)
                 binding.luminance = calculateLuminance(cardItem.backgroundColor)

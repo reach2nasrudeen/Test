@@ -1,0 +1,31 @@
+{
+  "cards": [
+    {
+      "bankName": "Dutch Bangla Bank",
+      "cardCategory": "Platinum Plus",
+      "cardExpMonth": "01",
+      "cardExpYear": "22",
+      "cardHolderName": "Sunny Aveiro",
+      "cardNumber": "1234567891231690",
+      "cardType": "VISA"
+    },
+    {
+      "bankName": "Dutch Bangla Bank",
+      "cardCategory": "Platinum Plus",
+      "cardExpMonth": "01",
+      "cardExpYear": "22",
+      "cardHolderName": "Richard Parker",
+      "cardNumber": "1234567891231691",
+      "cardType": "VISA"
+    },
+    {
+      "bankName": "Dutch Bangla Bank",
+      "cardCategory": "Platinum Plus",
+      "cardExpMonth": "01",
+      "cardExpYear": "22",
+      "cardHolderName": "William Jason",
+      "cardNumber": "1234567891231692",
+      "cardType": "VISA"
+    }
+  ]
+}

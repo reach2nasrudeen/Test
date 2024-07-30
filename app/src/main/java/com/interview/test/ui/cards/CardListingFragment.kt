@@ -9,8 +9,11 @@ import androidx.core.view.isVisible
 import com.interview.test.R
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding
+import com.interview.test.utils.toModelString
 import com.interview.test.viewmodel.CardsViewModel
+import com.interview.test.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import timber.log.Timber
 
 
 /**
@@ -20,6 +23,7 @@ class CardListingFragment : Fragment() {
 
     private var cardsAdapter: CardsAdapter? = null
 
+    private val homeViewModel: HomeViewModel by activityViewModel<HomeViewModel>()
     private val viewModel: CardsViewModel by activityViewModel<CardsViewModel>()
 
     private var _binding: FragmentCardListingBinding? = null
@@ -41,11 +45,11 @@ class CardListingFragment : Fragment() {
             ivBack.isVisible = true
             textTitle.setText(R.string.text_all_cards)
         }
-        cardsAdapter = CardsAdapter(emptyList())
+        cardsAdapter = CardsAdapter(showMemberName = true)
 
         binding.rvCards.adapter = cardsAdapter
 
-        viewModel.cards.observe(viewLifecycleOwner) {
+        homeViewModel.cards.observe(viewLifecycleOwner) {
             cardsAdapter?.updateData(it)
         }
     }

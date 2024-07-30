@@ -1,0 +1,411 @@
+{
+  "cardSummary": {
+    "cardID": "ef2fa3f4-2e2d-4305-b538-b665616f15f2",
+    "cardCategory": "Platinam",
+    "currentBalance": 3567.12,
+    "creditLimit": 5000,
+    "currencyType": "USD"
+  },
+  "transactions": [
+    {
+      "transaction_id": "txn001",
+      "date": "2024-07-01T10:15:30Z",
+      "merchant": "SuperMart",
+      "amount": -45.67,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn002",
+      "date": "2024-07-01T12:45:00Z",
+      "merchant": "BookStore",
+      "amount": -29.99,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn003",
+      "date": "2024-07-02T09:30:15Z",
+      "merchant": "TechGadgets",
+      "amount": -159,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn004",
+      "date": "2024-07-02T14:22:10Z",
+      "merchant": "GourmetCafe",
+      "amount": -12.5,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn005",
+      "date": "2024-07-03T08:55:00Z",
+      "merchant": "OnlineShop",
+      "amount": 200,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn006",
+      "date": "2024-07-03T11:34:45Z",
+      "merchant": "Pharmacy",
+      "amount": -35.4,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn007",
+      "date": "2024-07-04T13:20:30Z",
+      "merchant": "ElectroWorld",
+      "amount": -89.99,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn008",
+      "date": "2024-07-05T15:10:25Z",
+      "merchant": "GroceriesPlus",
+      "amount": -23.75,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn009",
+      "date": "2024-07-06T17:45:00Z",
+      "merchant": "TravelAgency",
+      "amount": 500,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn010",
+      "date": "2024-07-07T10:30:10Z",
+      "merchant": "FitnessCenter",
+      "amount": -75,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn011",
+      "date": "2024-07-07T14:00:45Z",
+      "merchant": "ClothingStore",
+      "amount": -120,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn012",
+      "date": "2024-07-08T09:15:30Z",
+      "merchant": "BookStore",
+      "amount": 50,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn013",
+      "date": "2024-07-08T12:25:50Z",
+      "merchant": "CafeLounge",
+      "amount": -10.99,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn014",
+      "date": "2024-07-09T11:40:20Z",
+      "merchant": "HomeGoods",
+      "amount": -60,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn015",
+      "date": "2024-07-10T08:55:15Z",
+      "merchant": "TechGadgets",
+      "amount": 150,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn016",
+      "date": "2024-07-10T14:22:05Z",
+      "merchant": "SuperMart",
+      "amount": -45.67,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn017",
+      "date": "2024-07-11T09:30:00Z",
+      "merchant": "OnlineShop",
+      "amount": 250,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn018",
+      "date": "2024-07-11T12:45:30Z",
+      "merchant": "GourmetCafe",
+      "amount": -22,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn019",
+      "date": "2024-07-12T10:15:20Z",
+      "merchant": "TravelAgency",
+      "amount": 700,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn020",
+      "date": "2024-07-12T15:30:10Z",
+      "merchant": "Pharmacy",
+      "amount": -40,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn021",
+      "date": "2024-07-13T11:22:00Z",
+      "merchant": "ElectroWorld",
+      "amount": -120,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn022",
+      "date": "2024-07-14T09:45:25Z",
+      "merchant": "GroceriesPlus",
+      "amount": -30.25,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn023",
+      "date": "2024-07-15T10:10:30Z",
+      "merchant": "ClothingStore",
+      "amount": 300,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn024",
+      "date": "2024-07-15T13:22:15Z",
+      "merchant": "CafeLounge",
+      "amount": -15.5,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn025",
+      "date": "2024-07-16T08:40:00Z",
+      "merchant": "HomeGoods",
+      "amount": 75,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn026",
+      "date": "2024-07-16T11:30:10Z",
+      "merchant": "TechGadgets",
+      "amount": -200,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn027",
+      "date": "2024-07-17T14:15:20Z",
+      "merchant": "SuperMart",
+      "amount": -50,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn028",
+      "date": "2024-07-18T09:45:35Z",
+      "merchant": "BookStore",
+      "amount": 75,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn029",
+      "date": "2024-07-19T13:22:10Z",
+      "merchant": "GourmetCafe",
+      "amount": -18,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn030",
+      "date": "2024-07-20T12:10:25Z",
+      "merchant": "ClothingStore",
+      "amount": -150,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn031",
+      "date": "2024-07-21T11:55:00Z",
+      "merchant": "ElectroWorld",
+      "amount": 100,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn032",
+      "date": "2024-07-22T10:30:20Z",
+      "merchant": "Pharmacy",
+      "amount": -25,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn033",
+      "date": "2024-07-23T14:45:15Z",
+      "merchant": "GroceriesPlus",
+      "amount": 120,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn034",
+      "date": "2024-07-24T09:15:30Z",
+      "merchant": "FitnessCenter",
+      "amount": -80,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn035",
+      "date": "2024-07-25T12:30:45Z",
+      "merchant": "OnlineShop",
+      "amount": 350,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn036",
+      "date": "2024-07-26T10:40:00Z",
+      "merchant": "TechGadgets",
+      "amount": -120,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn037",
+      "date": "2024-07-27T14:25:30Z",
+      "merchant": "CafeLounge",
+      "amount": -12.5,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn038",
+      "date": "2024-07-28T08:55:20Z",
+      "merchant": "HomeGoods",
+      "amount": 200,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn039",
+      "date": "2024-07-29T13:15:45Z",
+      "merchant": "BookStore",
+      "amount": -55,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn040",
+      "date": "2024-07-30T11:30:10Z",
+      "merchant": "GourmetCafe",
+      "amount": 10,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn041",
+      "date": "2024-07-31T09:45:30Z",
+      "merchant": "ClothingStore",
+      "amount": -75,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn042",
+      "date": "2024-08-01T10:00:00Z",
+      "merchant": "FitnessCenter",
+      "amount": -60,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn043",
+      "date": "2024-08-02T12:30:15Z",
+      "merchant": "TechGadgets",
+      "amount": 220,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn044",
+      "date": "2024-08-03T14:15:25Z",
+      "merchant": "ElectroWorld",
+      "amount": -150,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn045",
+      "date": "2024-08-04T10:20:30Z",
+      "merchant": "GroceriesPlus",
+      "amount": 90,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn046",
+      "date": "2024-08-05T13:10:15Z",
+      "merchant": "OnlineShop",
+      "amount": -45,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn047",
+      "date": "2024-08-06T11:25:00Z",
+      "merchant": "Pharmacy",
+      "amount": -55,
+      "type": "debit",
+      "status": "failure"
+    },
+    {
+      "transaction_id": "txn048",
+      "date": "2024-08-07T09:35:10Z",
+      "merchant": "CafeLounge",
+      "amount": 25,
+      "type": "credit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn049",
+      "date": "2024-08-08T12:50:00Z",
+      "merchant": "HomeGoods",
+      "amount": -100,
+      "type": "debit",
+      "status": "success"
+    },
+    {
+      "transaction_id": "txn050",
+      "date": "2024-08-09T15:15:30Z",
+      "merchant": "BookStore",
+      "amount": 40,
+      "type": "credit",
+      "status": "success"
+    }
+  ]
+}

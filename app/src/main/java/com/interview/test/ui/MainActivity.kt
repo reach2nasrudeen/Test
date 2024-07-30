@@ -8,14 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.interview.test.R
 import com.interview.test.databinding.ActivityMainBinding
+import com.interview.test.model.CardsList
 import com.interview.test.utils.getDrawableRes
+import com.interview.test.utils.getObjectFromJson
 import com.interview.test.viewmodel.HomeViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -108,6 +112,12 @@ class MainActivity : AppCompatActivity() {
             this.previousSelectedItem = item
 
             true
+        }
+
+        lifecycleScope.launch {
+            getObjectFromJson<CardsList>("cards.json").let {
+                viewModel.updateCards(it)
+            }
         }
     }
 }

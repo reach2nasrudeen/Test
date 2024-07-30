@@ -10,17 +10,35 @@ data class CardItem(
     val cardExpYear: String,
     val cardHolderName: String? = null,
     val cardType: CardType = CardType.VISA,
+    val backgroundColor: Int
 ) {
-    val backgroundColor: Int by lazy { getRandomColor() }
-    fun formattedCardNumber(): String {
-        return cardNumber
-    }
 
     fun cardExpiryData(): String {
         return "Exp $cardExpMonth/$cardExpYear"
     }
 
-    fun isCardHolderNameAvailable(): Boolean = !cardHolderName.isNullOrEmpty()
+    companion object {
+        fun create(
+            bankName: String,
+            cardNumber: String,
+            cardCategory: String,
+            cardExpMonth: String,
+            cardExpYear: String,
+            cardHolderName: String? = null,
+            cardType: CardType = CardType.VISA
+        ): CardItem {
+            return CardItem(
+                bankName = bankName,
+                cardNumber = cardNumber,
+                cardCategory = cardCategory,
+                cardExpMonth = cardExpMonth,
+                cardExpYear = cardExpYear,
+                cardHolderName = cardHolderName,
+                cardType = cardType,
+                backgroundColor = getRandomColor() // Control the default color here
+            )
+        }
+    }
 }
 
 enum class CardType {

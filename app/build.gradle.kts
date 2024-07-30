@@ -59,4 +59,5 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.koin.android)
     implementation(libs.timber)
+    implementation(libs.mp.android.chart)
 }

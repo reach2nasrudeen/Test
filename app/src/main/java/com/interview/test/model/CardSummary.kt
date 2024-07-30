@@ -6,6 +6,4 @@ data class CardSummary(
     val creditLimit: Int? = null,
     val currencyType: String? = null,
     val currentBalance: Double? = null
-) {
-    fun getFormattedBalance() = String.format("$${currentBalance}")
-}
+)

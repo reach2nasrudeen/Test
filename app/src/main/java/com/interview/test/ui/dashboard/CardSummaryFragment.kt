@@ -6,13 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.interview.test.R
 import com.interview.test.adapter.TransactionsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding
 import com.interview.test.databinding.FragmentCardSummaryBinding
+import com.interview.test.model.CardResponse
+import com.interview.test.model.CardSummary
+import com.interview.test.model.CardsList
 import com.interview.test.model.Transaction
+import com.interview.test.utils.getObjectFromJson
 import com.interview.test.viewmodel.CardsViewModel
 import com.interview.test.viewmodel.DashboardViewModel
+import com.interview.test.viewmodel.HomeViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -55,7 +62,14 @@ class CardSummaryFragment : Fragment() {
         transactionsAdapter = TransactionsAdapter()
         binding.rvTransactions.adapter = transactionsAdapter
 
-        viewModel.getCardSummary()
+//        viewModel.getCardSummary()
+
+        lifecycleScope.launch {
+            requireContext().getObjectFromJson<CardResponse>("card_summary.json").let {
+                viewModel.updateCardSummary(it)
+            }
+        }
+
 
         viewModel.transactions.observe(viewLifecycleOwner) {
             transactionsAdapter?.updateData(it)

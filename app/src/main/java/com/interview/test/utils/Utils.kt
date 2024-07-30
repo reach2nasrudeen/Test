@@ -4,12 +4,11 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.databinding.BindingAdapter
-import java.text.NumberFormat
-import java.util.Locale
-import kotlin.math.absoluteValue
+import com.google.gson.Gson
+import timber.log.Timber
+import java.io.IOException
+import java.io.InputStream
 import kotlin.math.pow
 import kotlin.random.Random
 
@@ -42,40 +41,39 @@ fun calculateLuminance(color: Int): Double {
 }
 
 
-@BindingAdapter("bg_luminance")
-fun setTextColorBasedOnBackground(textView: AppCompatTextView, luminance: Double) {
-// Set text color based on luminance
-    if (luminance > 0.5) {
-        // Light background - set text color to black
-        textView.setTextColor(Color.BLACK)
-    } else {
-        // Dark background - set text color to white
-        textView.setTextColor(Color.WHITE)
+inline fun <reified T> Context.getObjectFromJson(jsonFileName: String): T {
+    val myJson = inputStreamToString(this.assets.open(jsonFileName))
+    return Gson().fromJson(myJson, T::class.java)
+}
+
+fun inputStreamToString(inputStream: InputStream): String {
+    return try {
+        val bytes = ByteArray(inputStream.available())
+        inputStream.read(bytes, 0, bytes.size)
+        String(bytes)
+    } catch (e: IOException) {
+        ""
     }
 }
 
-@BindingAdapter("amount")
-fun setAmountText(textView: AppCompatTextView, amount: Double?) {
-    val numberFormat = NumberFormat.getCurrencyInstance(Locale.US)
-    val formattedAmount = (amount ?: 0.0).let {
-        if (it < 0) {
-            "-${numberFormat.format(it.absoluteValue)}"
-        } else {
-            "+${numberFormat.format(it)}"
-        }
+inline fun <reified T> T.toModelString(): String? {
+    return try {
+        Gson().toJson(this)
+    } catch (exception: Exception) {
+        Timber.e(exception)
+        null
     }
-    textView.text = formattedAmount
 }
 
-@BindingAdapter("balance")
-fun setBalanceText(textView: AppCompatTextView, amount: Double?) {
-    val numberFormat = NumberFormat.getCurrencyInstance(Locale.US)
-    val formattedAmount = (amount ?: 0.0).let {
-        if (it < 0) {
-            "-${numberFormat.format(it.absoluteValue)}"
-        } else {
-            numberFormat.format(it)
-        }
-    }
-    textView.text = formattedAmount
+fun maskCardNumber(cardNumber: String): String {
+    // Ensure the input is a valid card number length
+    if (cardNumber.length != 16) return cardNumber
+
+    // Take the last 4 digits
+    val last4Digits = cardNumber.takeLast(4)
+
+    // Mask the rest of the digits
+    val maskedNumber = "**** **** **** $last4Digits"
+
+    return maskedNumber
 }
