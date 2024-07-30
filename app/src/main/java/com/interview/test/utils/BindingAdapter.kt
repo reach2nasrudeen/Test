@@ -1,6 +1,8 @@
 package com.interview.test.utils
 
 import android.graphics.Color
+import android.graphics.PorterDuff
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import com.interview.test.base.Constants
@@ -18,6 +20,18 @@ fun setTextColorBasedOnBackground(textView: AppCompatTextView, luminance: Double
     } else {
         // Dark background - set text color to white
         textView.setTextColor(Color.WHITE)
+    }
+}
+
+@BindingAdapter("tint_luminance")
+fun setTintBasedOnBackground(textView: AppCompatImageView, luminance: Double) {
+// Set text color based on luminance
+    if (luminance > 0.5) {
+        // Light background - set text color to black
+        textView.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN)
+    } else {
+        // Dark background - set text color to white
+        textView.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
     }
 }
 
@@ -57,4 +71,3 @@ fun setMaskedCardNumber(textView: AppCompatTextView, cardNumber: String?) {
 fun setTransactionDate(textView: AppCompatTextView, transactionDate: String?) {
     textView.text = transactionDate?.let { formatDateTime(it) } ?: Constants.NOT_AVAILABLE
 }
-

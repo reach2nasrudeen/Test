@@ -44,12 +44,4 @@ class FrequentItemView @JvmOverloads constructor(
             typedArray.recycle()
         }
     }
-
-//    fun setText(text: String) {
-//        textView.text = text
-//    }
-//
-//    fun setIcon(resourceId: Int) {
-//        iconImageView.setImageResource(resourceId)
-//    }
 }

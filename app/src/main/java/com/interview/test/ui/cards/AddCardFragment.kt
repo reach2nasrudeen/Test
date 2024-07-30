@@ -1,7 +1,6 @@
 package com.interview.test.ui.cards
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.interview.test.R
 import com.interview.test.databinding.FragmentAddCardBinding
 import com.interview.test.model.CardType
+import com.interview.test.utils.KeyboardHandler
 import com.interview.test.utils.getColorRes
 import com.interview.test.utils.toModelString
 import com.interview.test.viewmodel.CardsViewModel
@@ -58,6 +58,7 @@ class AddCardFragment : Fragment() {
 
 
         binding.edCardType.setOnClickListener {
+            KeyboardHandler.hideKeyboard(requireActivity())
             showPopupMenu(it)
         }
 
@@ -113,70 +114,8 @@ class AddCardFragment : Fragment() {
         _binding = null
     }
 
-    private fun isInputCorrect(
-        s: Editable,
-        size: Int,
-        dividerPosition: Int,
-        divider: Char
-    ): Boolean {
-        var isCorrect = s.length <= size
-        for (i in 0 until s.length) {
-            isCorrect = if (i > 0 && (i + 1) % dividerPosition == 0) {
-                isCorrect and (divider == s[i])
-            } else {
-                isCorrect and Character.isDigit(s[i])
-            }
-        }
-        return isCorrect
-    }
+    companion object {
 
-    private fun concatString(digits: CharArray, dividerPosition: Int, divider: Char): String {
-        val formatted = StringBuilder()
-
-        for (i in digits.indices) {
-            if (digits[i].code != 0) {
-                formatted.append(digits[i])
-                if ((i > 0) && (i < (digits.size - 1)) && (((i + 1) % dividerPosition) == 0)) {
-                    formatted.append(divider)
-                }
-            }
-        }
-
-        return formatted.toString()
-    }
-
-    private fun getDigitArray(s: Editable, size: Int): CharArray {
-        val digits = CharArray(size)
-        var index = 0
-        var i = 0
-        while (i < s.length && index < size) {
-            val current = s[i]
-            if (Character.isDigit(current)) {
-                digits[index] = current
-                index++
-            }
-            i++
-        }
-        return digits
+        private const val CARD_CVC_TOTAL_SYMBOLS = 3
     }
 }
-
-
-const val CARD_CVC_TOTAL_SYMBOLS = 3
-
-
-const val CARD_NUMBER_TOTAL_SYMBOLS = 19 // size of pattern 0000-0000-0000-0000
-const val CARD_NUMBER_TOTAL_DIGITS = 16 // max numbers of digits in pattern: 0000 x 4
-const val CARD_NUMBER_DIVIDER_MODULO =
-    5 // means divider position is every 5th symbol beginning with 1
-const val CARD_NUMBER_DIVIDER_POSITION =
-    CARD_NUMBER_DIVIDER_MODULO - 1 // means divider position is every 4th symbol beginning with 0
-const val CARD_NUMBER_DIVIDER = '-'
-
-const val CARD_DATE_TOTAL_SYMBOLS = 5 // size of pattern MM/YY
-const val CARD_DATE_TOTAL_DIGITS = 4 // max numbers of digits in pattern: MM + YY
-const val CARD_DATE_DIVIDER_MODULO =
-    3 // means divider position is every 3rd symbol beginning with 1
-const val CARD_DATE_DIVIDER_POSITION =
-    CARD_DATE_DIVIDER_MODULO - 1 // means divider position is every 2nd symbol beginning with 0
-const val CARD_DATE_DIVIDER = '/'

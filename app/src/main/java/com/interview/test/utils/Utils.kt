@@ -3,6 +3,7 @@ package com.interview.test.utils
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.util.TypedValue
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -91,4 +92,12 @@ fun Context.showToast(@StringRes resId: Int) {
 
 fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Context?.dpToPx(dipValue: Float): Float {
+    return this?.let {
+        val metrics = resources.displayMetrics
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics)
+    } ?: 0f
+
 }

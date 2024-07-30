@@ -35,7 +35,9 @@ data class CardItem(
                 cardExpYear = cardExpYear,
                 cardHolderName = cardHolderName,
                 cardType = cardType,
-                backgroundColor = getRandomColor() // Control the default color here
+                backgroundColor = getRandomColor()
+
+//                        backgroundColor = generateMaterialColorScheme()
             )
         }
     }

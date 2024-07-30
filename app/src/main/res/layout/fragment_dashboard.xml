@@ -58,8 +58,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    app:card_bg="@color/green_trans"
-                    app:icon="@drawable/ic_vd_phone"
+                    app:card_bg="@color/red_trans"
+                    app:icon="@drawable/ic_vd_schedule"
                     app:text="@string/text_bill_payment" />
 
                 <com.interview.test.widget.FrequentItemView
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     app:card_bg="@color/green_trans"
-                    app:icon="@drawable/ic_vd_phone"
+                    app:icon="@drawable/ic_vd_send"
                     app:text="@string/text_bank_transfer" />
 
                 <com.interview.test.widget.FrequentItemView
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 app:card_bg="@color/green_trans"
-                app:icon="@drawable/ic_vd_phone"
+                app:icon="@drawable/ic_vd_manage_card"
                 app:text="@string/text_manage_cards" />
         </GridLayout>
     </LinearLayout>
