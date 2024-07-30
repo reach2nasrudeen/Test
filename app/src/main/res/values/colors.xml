@@ -29,4 +29,5 @@
     <color name="text_default">#c3c9d1</color>
 
     <color name="card_bg_light">#f8f8f8</color>
+    <color name="color_border_edittext">#c7c5e6</color>
 </resources>

@@ -9,7 +9,7 @@ data class CardItem(
     val cardExpMonth: String,
     val cardExpYear: String,
     val cardHolderName: String? = null,
-    val cardType: CardType = CardType.VISA,
+    val cardType: CardType = CardType.CREDIT,
     val backgroundColor: Int
 ) {
 
@@ -25,7 +25,7 @@ data class CardItem(
             cardExpMonth: String,
             cardExpYear: String,
             cardHolderName: String? = null,
-            cardType: CardType = CardType.VISA
+            cardType: CardType = CardType.CREDIT
         ): CardItem {
             return CardItem(
                 bankName = bankName,
@@ -41,8 +41,7 @@ data class CardItem(
     }
 }
 
-enum class CardType {
-    VISA,
-    MASTER,
-    RUPAY
+enum class CardType(val type: String) {
+    DEBIT("Debit"),
+    CREDIT("Credit"),
 }

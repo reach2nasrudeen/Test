@@ -3,9 +3,11 @@ package com.interview.test.utils
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
+import com.interview.test.R
 import timber.log.Timber
 import java.io.IOException
 import java.io.InputStream
@@ -17,6 +19,9 @@ fun Context.getDrawableRes(@DrawableRes resId: Int): Drawable? {
     return ContextCompat.getDrawable(this, resId)
 }
 
+fun Context.getColorRes(@ColorRes resId: Int): Int {
+    return ContextCompat.getColor(this, resId)
+}
 
 fun getRandomColor() = Color.argb(
     255,

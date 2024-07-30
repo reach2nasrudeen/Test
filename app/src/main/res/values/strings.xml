@@ -14,10 +14,21 @@
     <string name="text_manage_cards">Manage Cards</string>
     <string name="text_all_cards">All Cards</string>
     <string name="text_add_new_card">Add New Card</string>
+    <string name="text_add_card">Add Card</string>
     <string name="text_card_details">Card Details</string>
     <string name="text_current_balance">Current Balance</string>
     <string name="text_transaction_history">Transactions History</string>
     <string name="text_day">Day</string>
     <string name="text_month">Month</string>
     <string name="text_yearly">Yearly</string>
+    <string name="text_card_holder_name">Cardholder Name</string>
+    <string name="hint_card_holder_name">John Doe</string>
+    <string name="text_card_number">Card Number</string>
+    <string name="hint_card_number">XXXX XXXX XXXX XXXX</string>
+    <string name="text_card_type">Card Type</string>
+    <string name="hint_card_type">Choose one</string>
+    <string name="text_card_expiry">Expiry</string>
+    <string name="hint_card_expiry">MM/YY</string>
+    <string name="text_card_cvv">CVV</string>
+    <string name="hint_card_cvv">XXX</string>
 </resources>
