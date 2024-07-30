@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
 }
 
 android {
@@ -35,7 +36,6 @@ android {
     }
 
     buildFeatures {
-        //noinspection DataBindingWithoutKapt
         dataBinding = true
         buildConfig = true
     }

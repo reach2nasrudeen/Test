@@ -11,6 +11,10 @@
             name="cardItem"
             type="com.interview.test.model.CardItem" />
 
+        <variable
+            name="luminance"
+            type="Double" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -35,6 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:text="@{cardItem.bankName}"
+                android:textColor="@color/white"
+                app:bg_luminance="@{luminance}"
                 tools:text="Dutch Bangla Bank" />
 
             <LinearLayout
@@ -49,6 +55,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{cardItem.formattedCardNumber()}"
+                    android:textColor="@color/white"
+                    app:bg_luminance="@{luminance}"
                     tools:text="**** **** **** 1690" />
 
                 <RelativeLayout
@@ -61,6 +69,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{cardItem.cardCategory}"
+                        android:textColor="@color/white"
+                        app:bg_luminance="@{luminance}"
                         tools:text="Platinum Plus" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -69,18 +79,21 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="@{cardItem.cardExpiryData()}"
+                        android:textColor="@color/white"
                         android:visibility="@{cardItem.isCardHolderNameAvailable() ? View.VISIBLE : View.GONE}"
+                        app:bg_luminance="@{luminance}"
                         tools:ignore="RelativeOverlap"
                         tools:text="Exp 01/22" />
                 </RelativeLayout>
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_card_holder_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="@{cardItem.isCardHolderNameAvailable() ? cardItem.cardHolderName : cardItem.cardExpiryData()}"
+                android:textColor="@color/white"
+                app:bg_luminance="@{luminance}"
                 tools:text="Exp 01/22" />
 
             <androidx.appcompat.widget.AppCompatImageView

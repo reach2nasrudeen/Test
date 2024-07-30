@@ -2,12 +2,11 @@ package com.interview.test.utils
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.view.View
-import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import kotlin.math.pow
 import kotlin.random.Random
 
@@ -39,3 +38,16 @@ fun calculateLuminance(color: Int): Double {
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 }
 
+
+
+@BindingAdapter("bg_luminance")
+fun setTextColorBasedOnBackground(textView: AppCompatTextView, luminance: Double) {
+// Set text color based on luminance
+    if (luminance > 0.5) {
+        // Light background - set text color to black
+        textView.setTextColor(Color.BLACK)
+    } else {
+        // Dark background - set text color to white
+        textView.setTextColor(Color.WHITE)
+    }
+}
