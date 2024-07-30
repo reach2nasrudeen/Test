@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.interview.test.databinding.FragmentAddCardBinding
+import com.interview.test.viewmodel.CardsViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -13,6 +16,7 @@ import com.interview.test.databinding.FragmentAddCardBinding
  */
 class AddCardFragment : Fragment() {
 
+    private val viewModel: CardsViewModel by activityViewModel<CardsViewModel>()
     private var _binding: FragmentAddCardBinding? = null
     private val binding
         get() = _binding!!

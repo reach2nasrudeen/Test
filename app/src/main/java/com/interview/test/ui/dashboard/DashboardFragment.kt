@@ -9,15 +9,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentDashboardBinding
 import com.interview.test.model.CardItem
+import com.interview.test.viewmodel.DashboardViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class DashboardFragment : Fragment() {
 
+    private var cardsAdapter: CardsAdapter? = null
     private var _binding: FragmentDashboardBinding? = null
     private val binding
         get() = _binding!!
+
+    private val viewModel: DashboardViewModel by viewModel<DashboardViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,52 +35,15 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        cardsAdapter = CardsAdapter(viewModel.getMockCards())
 
-        binding.rvCards.apply {
-            adapter = CardsAdapter(getMockCards())
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        }
+        binding.rvCards.adapter = cardsAdapter
     }
 
-    private fun getMockCards(): List<CardItem> {
-        val cards = arrayListOf<CardItem>()
-
-        cards.add(
-            CardItem(
-                bankName = "Dutch Bangla Bank",
-                cardCategory = "Platinum Plus",
-                cardExpMonth = "01",
-                cardExpYear = "22",
-                cardNumber = "**** **** **** 1690"
-            )
-        )
-        cards.add(
-            CardItem(
-                bankName = "Dutch Bangla Bank",
-                cardCategory = "Platinum Plus",
-                cardExpMonth = "01",
-                cardExpYear = "22",
-                cardNumber = "**** **** **** 1691"
-            )
-        )
-        cards.add(
-            CardItem(
-                bankName = "Dutch Bangla Bank",
-                cardCategory = "Platinum Plus",
-                cardExpMonth = "01",
-                cardExpYear = "22",
-                cardNumber = "**** **** **** 1692"
-            )
-        )
-
-
-
-        return cards
-    }
 
     override fun onDestroyView() {
-        _binding = null
         super.onDestroyView()
+        _binding = null
+        cardsAdapter = null
     }
 }

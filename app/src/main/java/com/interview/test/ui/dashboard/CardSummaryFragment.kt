@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import com.interview.test.R
 import com.interview.test.databinding.FragmentCardListingBinding
 import com.interview.test.databinding.FragmentCardSummaryBinding
+import com.interview.test.viewmodel.CardsViewModel
+import com.interview.test.viewmodel.DashboardViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
  * A simple [Fragment] subclass.
  */
 class CardSummaryFragment : Fragment() {
+
+    private val viewModel: CardsViewModel by activityViewModel<CardsViewModel>()
 
     private var _binding: FragmentCardSummaryBinding? = null
     private val binding

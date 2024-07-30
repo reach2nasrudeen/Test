@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding
 import com.interview.test.model.CardItem
+import com.interview.test.viewmodel.CardsViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -15,6 +18,9 @@ import com.interview.test.model.CardItem
  */
 class CardListingFragment : Fragment() {
 
+    private var cardsAdapter: CardsAdapter? = null
+
+    private val viewModel: CardsViewModel by activityViewModel<CardsViewModel>()
 
     private var _binding: FragmentCardListingBinding? = null
     private val binding
@@ -31,50 +37,16 @@ class CardListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        cardsAdapter = CardsAdapter(viewModel.getMockCards())
 
-        binding.rvCards.adapter = CardsAdapter(getMockCards())
+        binding.rvCards.adapter = cardsAdapter
     }
 
-    private fun getMockCards(): List<CardItem> {
-        val cards = arrayListOf<CardItem>()
-
-        cards.add(
-            CardItem(
-                bankName = "Dutch Bangla Bank",
-                cardCategory = "Platinum Plus",
-                cardExpMonth = "01",
-                cardExpYear = "22",
-                cardHolderName = "Sunny Aveiro",
-                cardNumber = "**** **** **** 1690"
-            )
-        )
-        cards.add(
-            CardItem(
-                bankName = "Dutch Bangla Bank",
-                cardCategory = "Platinum Plus",
-                cardExpMonth = "01",
-                cardExpYear = "22",
-                cardHolderName = "Richard Parker",
-                cardNumber = "**** **** **** 1691"
-            )
-        )
-        cards.add(
-            CardItem(
-                bankName = "Dutch Bangla Bank",
-                cardCategory = "Platinum Plus",
-                cardExpMonth = "01",
-                cardExpYear = "22",
-                cardHolderName = "William Jason",
-                cardNumber = "**** **** **** 1692"
-            )
-        )
-
-        return cards
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        cardsAdapter = null
     }
 
 }
