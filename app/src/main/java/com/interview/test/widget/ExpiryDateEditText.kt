@@ -1,4 +1,4 @@
-package com.interview.test
+package com.interview.test.widget
 
 import android.content.Context
 import android.text.Editable
@@ -8,13 +8,13 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import java.util.Calendar
 
-class ExpiryDateEditText(context: Context, attrs: AttributeSet?) : AppCompatEditText(context, attrs) {
+class ExpiryDateEditText(context: Context, attrs: AttributeSet?) :
+    AppCompatEditText(context, attrs) {
 
     init {
         filters = arrayOf(InputFilter.LengthFilter(5))
         addTextChangedListener(object : TextWatcher {
             private var current = ""
-            private val mmYYFormat = "MMYY"
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 // No action needed
@@ -27,8 +27,8 @@ class ExpiryDateEditText(context: Context, attrs: AttributeSet?) : AppCompatEdit
             override fun afterTextChanged(s: Editable) {
                 if (s.toString() == current) return
 
-                val clean = s.toString().replace("[^\\d]".toRegex(), "")
-                val cleanC = current.replace("[^\\d]".toRegex(), "")
+                val clean = s.toString().replace("\\D".toRegex(), "")
+                val cleanC = current.replace("\\D".toRegex(), "")
 
                 val cl = clean.length
                 var sel = cl
@@ -38,17 +38,20 @@ class ExpiryDateEditText(context: Context, attrs: AttributeSet?) : AppCompatEdit
 
                 if (clean == cleanC) sel--
 
-                if (clean.length < 4) {
-                    current = when (clean.length) {
+                current = if (clean.length < 4) {
+                    when (clean.length) {
                         2 -> clean.substring(0, 2) + "/"
                         3 -> clean.substring(0, 2) + "/" + clean.substring(2)
                         else -> clean
                     }
                 } else {
-                    current = clean.substring(0, 2) + "/" + clean.substring(2, 4)
+                    clean.substring(0, 2) + "/" + clean.substring(2, 4)
                 }
 
-                current = if (clean.length < 4) current else clean.substring(0, 2) + "/" + clean.substring(2, 4)
+                current = if (clean.length < 4) current else clean.substring(
+                    0,
+                    2
+                ) + "/" + clean.substring(2, 4)
 
                 removeTextChangedListener(this)
                 setText(current)
@@ -73,11 +76,12 @@ class ExpiryDateEditText(context: Context, attrs: AttributeSet?) : AppCompatEdit
                     val currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
 
                     val enteredYear = year.toInt()
-                    if (enteredYear < currentYear || (enteredYear == currentYear && month < currentMonth)) {
-                        error = "Invalid expiry date"
-                    } else {
-                        error = null // Clear error if valid
-                    }
+                    error =
+                        if (enteredYear < currentYear || (enteredYear == currentYear && month < currentMonth)) {
+                            "Invalid expiry date"
+                        } else {
+                            null // Clear error if valid
+                        }
                 }
             }
         })

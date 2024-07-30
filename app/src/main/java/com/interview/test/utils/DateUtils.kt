@@ -20,7 +20,7 @@ fun String?.toDate(
     inputTimeFormat: String = TF_DEFAULT,
     inputTimeZone: String = getDefaultTimeZone(),
 ): Date {
-    if(this.isNullOrEmpty()) return Date()
+    if (this.isNullOrEmpty()) return Date()
     val inputFormat = SimpleDateFormat(inputTimeFormat, Locale.getDefault()).apply {
         timeZone = inputTimeZone.getTimeZone()
     }

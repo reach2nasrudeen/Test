@@ -5,12 +5,9 @@
 
     <data>
 
-        <!--        <variable-->
-        <!--            name="viewModel"-->
-        <!--            type="com.interview.test.viewmodel.CardsViewModel" />-->
         <variable
             name="uiState"
-            type="com.interview.test.viewmodel.UiState" />
+            type="com.interview.test.model.UiState" />
     </data>
 
     <LinearLayout
@@ -42,6 +39,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_rect_edittext"
             android:hint="@string/hint_card_holder_name"
+            android:inputType="textPersonName"
             android:padding="15dp"
             android:text="@={uiState.cardHolderName}"
             android:textColor="@color/light_grey"
@@ -55,7 +53,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/text_card_number" />
 
-        <com.interview.test.CardNumberEditText
+        <com.interview.test.widget.CardNumberEditText
             android:id="@+id/ed_card_number"
             style="@style/TextMedium"
             android:layout_width="match_parent"
@@ -113,7 +111,7 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/text_card_expiry" />
 
-                <com.interview.test.ExpiryDateEditText
+                <com.interview.test.widget.ExpiryDateEditText
                     android:id="@+id/ed_card_expiry"
                     style="@style/TextMedium"
                     android:layout_width="match_parent"

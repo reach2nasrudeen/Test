@@ -4,7 +4,9 @@
 
     <solid android:color="@color/white" />
 
-    <stroke android:color="@color/color_border_edittext"  android:width="2dp"/>
+    <stroke
+        android:color="@color/color_border_edittext"
+        android:width="2dp" />
     <corners android:radius="10dp" />
 
 </shape>

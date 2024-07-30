@@ -4,14 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.interview.test.model.CardItem
 import com.interview.test.model.CardResponse
-import com.interview.test.model.CardsList
+import com.interview.test.model.CardType
 import com.interview.test.model.Transaction
+import com.interview.test.model.UiState
 import com.interview.test.repository.CardsRepository
 import kotlinx.coroutines.launch
 
 class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel() {
+
+    var uiState: UiState = UiState()
 
     private val _transactions = MutableLiveData<List<Transaction>>()
     val transactions: LiveData<List<Transaction>> get() = _transactions
@@ -31,5 +33,9 @@ class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel()
     fun updateCardSummary(cardResponse: CardResponse) {
         _transactions.postValue(cardResponse.transactions.orEmpty())
         _balance.postValue(cardResponse.cardSummary?.currentBalance ?: 0.0)
+    }
+
+    fun updateCardType(cardType: CardType) {
+        uiState = uiState.copy(cardType = cardType.type)
     }
 }

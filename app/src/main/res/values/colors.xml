@@ -23,7 +23,7 @@
 
     <color name="blue">#4d76df</color>
     <color name="blue_trans">#334d76df</color>
-<!--    <color name="blue_trans_1">#664d76df</color>-->
+    <!--    <color name="blue_trans_1">#664d76df</color>-->
     <color name="blue_trans_1">#7497ea</color>
     <color name="card_bg">#262626</color>
     <color name="text_default">#c3c9d1</color>

@@ -1,4 +1,4 @@
-package com.interview.test
+package com.interview.test.widget
 
 import android.content.Context
 import android.text.Editable
@@ -37,6 +37,6 @@ class CardNumberEditText(context: Context, attrs: AttributeSet?) :
     }
 
     companion object {
-        private val nonDigits = Regex("[^\\d]")
+        private val nonDigits = Regex("\\D")
     }
 }

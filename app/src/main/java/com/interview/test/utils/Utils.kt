@@ -3,8 +3,10 @@ package com.interview.test.utils
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.interview.test.R
@@ -81,4 +83,12 @@ fun maskCardNumber(cardNumber: String): String {
     val maskedNumber = "**** **** **** $last4Digits"
 
     return maskedNumber
+}
+
+fun Context.showToast(@StringRes resId: Int) {
+    showToast(getString(resId))
+}
+
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
