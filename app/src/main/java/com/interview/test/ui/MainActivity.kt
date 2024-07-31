@@ -47,10 +47,12 @@ class MainActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                navController.popBackStack()
+                if (!navController.popBackStack()) finish()
                 updateFabIcon()
             }
         })
+
+//        navController.navigate(R.id.navigation_card_summary)
     }
 
     private fun setupObserver() {

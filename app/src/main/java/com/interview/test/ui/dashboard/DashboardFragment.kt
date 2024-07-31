@@ -64,7 +64,7 @@ class DashboardFragment : Fragment() {
 
     private val cardItemClickListener = object : CardsAdapter.ItemClickListener<CardItem> {
         override fun onItemClick(item: CardItem) {
-            findNavController().navigate(R.id.navigation_card_summary)
+            findNavController().navigate(R.id.action_card_summary)
         }
     }
 
