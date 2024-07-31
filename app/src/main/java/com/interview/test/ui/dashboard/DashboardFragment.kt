@@ -7,16 +7,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.interview.test.R
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentDashboardBinding
 import com.interview.test.model.CardItem
 import com.interview.test.utils.toModelString
-import com.interview.test.viewmodel.DashboardViewModel
 import com.interview.test.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 /**
@@ -30,8 +28,6 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding
         get() = _binding!!
-
-//    private val viewModel: DashboardViewModel by viewModel<DashboardViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +45,16 @@ class DashboardFragment : Fragment() {
         cardsAdapter = CardsAdapter(showMemberName = false)
         cardsAdapter?.itemClickListener = cardItemClickListener
 
-        binding.rvCards.adapter = cardsAdapter
+
+        binding.rvCards.apply {
+            adapter = cardsAdapter
+
+            onFlingListener = null
+
+            val pagerSnapHelper = PagerSnapHelper()
+            pagerSnapHelper.attachToRecyclerView(this)
+        }
+
 
         homeViewModel.cards.observe(viewLifecycleOwner) {
             Timber.e(it.toModelString())
@@ -61,6 +66,11 @@ class DashboardFragment : Fragment() {
         override fun onItemClick(item: CardItem) {
             findNavController().navigate(R.id.navigation_card_summary)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.updateBottomBar(true)
     }
 
     override fun onDestroyView() {

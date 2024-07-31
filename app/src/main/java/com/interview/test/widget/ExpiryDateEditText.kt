@@ -48,17 +48,18 @@ class ExpiryDateEditText(context: Context, attrs: AttributeSet?) :
                     clean.substring(0, 2) + "/" + clean.substring(2, 4)
                 }
 
-                current = if (clean.length < 4) current else clean.substring(
-                    0,
-                    2
-                ) + "/" + clean.substring(2, 4)
+                current = if (clean.length < 4) {
+                    current
+                } else {
+                    clean.substring(0, 2) + "/" + clean.substring(2, 4)
+                }
 
                 removeTextChangedListener(this)
                 setText(current)
                 setSelection(if (sel < current.length) sel else current.length)
                 addTextChangedListener(this)
 
-                validateDate()
+//                validateDate()
             }
 
             private fun validateDate() {

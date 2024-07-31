@@ -1,8 +1,7 @@
 package com.interview.test.ui
 
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -26,14 +25,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: HomeViewModel by viewModel<HomeViewModel>()
-    private var previousSelectedItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.fab.setOnClickListener {
-            if (previousSelectedItem?.itemId == R.id.navigation_card_listing) {
+            if (binding.bottomNavigationView.selectedItemId == R.id.navigation_card_listing) {
                 navController.navigate(R.id.navigation_add_card)
             } else {
                 // No-Op
@@ -46,6 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         setupBottomNavigation()
         setupObserver()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navController.popBackStack()
+                updateFabIcon()
+            }
+        })
     }
 
     private fun setupObserver() {
@@ -67,28 +72,24 @@ class MainActivity : AppCompatActivity() {
             background = null
             menu.getItem(2).isEnabled = false
         }
-
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
-
-            binding.fab.setImageDrawable(getDrawableRes(if (item.itemId == R.id.navigation_card_listing) R.drawable.ic_add else R.drawable.ic_vd_send))
-
             when (item.itemId) {
-                R.id.navigation_statistics -> {
-                    Toast.makeText(this, "Stats not in scope", Toast.LENGTH_SHORT).show()
-                    previousSelectedItem?.let {
-                        NavigationUI.onNavDestinationSelected(it, navController)
-                    }
+                R.id.navigation_statistics, R.id.navigation_profile -> {
+                    false
                 }
 
-                R.id.navigation_profile -> {
-                    Toast.makeText(this, "Profile not in scope", Toast.LENGTH_SHORT).show()
+                else -> {
+                    updateFabIcon(item.itemId)
+                    NavigationUI.onNavDestinationSelected(item, navController)
+                    true
                 }
-
-                else -> NavigationUI.onNavDestinationSelected(item, navController)
             }
-            this.previousSelectedItem = item
+        }
+    }
 
-            true
+    private fun updateFabIcon(selectedItemId: Int? = null) {
+        (selectedItemId ?: binding.bottomNavigationView.selectedItemId).let { itemId ->
+            binding.fab.setImageDrawable(getDrawableRes(if (itemId == R.id.navigation_card_listing) R.drawable.ic_add else R.drawable.ic_vd_send))
         }
     }
 }

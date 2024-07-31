@@ -21,6 +21,8 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="3"
+            android:paddingBottom="100dp"
+            android:clipToPadding="false"
             tools:listitem="@layout/item_card" />
     </LinearLayout>
 </layout>

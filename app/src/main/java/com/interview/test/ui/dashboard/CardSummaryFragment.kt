@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.interview.test.R
 import com.interview.test.adapter.TransactionsAdapter
 import com.interview.test.databinding.FragmentCardSummaryBinding
@@ -45,6 +46,10 @@ class CardSummaryFragment : Fragment() {
         binding.toolbar.apply {
             ivBack.isVisible = true
             textTitle.setText(R.string.text_card_details)
+
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
         transactionsAdapter = TransactionsAdapter()

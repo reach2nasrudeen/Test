@@ -19,9 +19,9 @@ data class CardItem(
 
     companion object {
         fun create(
-            bankName: String,
+            bankName: String = "Dutch Bangla Bank",
             cardNumber: String,
-            cardCategory: String,
+            cardCategory: String = "Platinum",
             cardExpMonth: String,
             cardExpYear: String,
             cardHolderName: String? = null,
@@ -45,5 +45,11 @@ data class CardItem(
 
 enum class CardType(val type: String) {
     DEBIT("Debit"),
-    CREDIT("Credit"),
+    CREDIT("Credit");
+
+    companion object {
+        fun fromType(type: String): CardType {
+            return entries.firstOrNull { it.type.equals(type, ignoreCase = true) } ?: DEBIT
+        }
+    }
 }

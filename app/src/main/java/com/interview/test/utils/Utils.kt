@@ -101,3 +101,11 @@ fun Context?.dpToPx(dipValue: Float): Float {
     } ?: 0f
 
 }
+
+fun String?.removeWhiteSpace(): String {
+    if (this.isNullOrEmpty()) return ""
+    return this.replace("\\s+".toRegex(), "")
+}
+
+
+fun String?.trimmedOrEmpty() = this?.trim()?.trimIndent().orEmpty()

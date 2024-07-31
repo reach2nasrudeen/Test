@@ -6,4 +6,7 @@ data class UiState(
     var cardType: String = "Choose one",
     var expiryDate: String = "",
     var cvv: String = ""
-)
+) {
+    fun cardExpiryMonth() = expiryDate.split("/").firstOrNull() ?: "00"
+    fun cardExpiryYear() = expiryDate.split("/").lastOrNull() ?: "00"
+}

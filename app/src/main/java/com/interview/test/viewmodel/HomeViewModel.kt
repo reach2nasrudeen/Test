@@ -32,6 +32,11 @@ class HomeViewModel : ViewModel() {
         }.let {
             _cards.postValue(it)
         }
+    }
 
+    fun updateCard(cardItem: CardItem) {
+        val updatedList = _cards.value?.toMutableList() ?: mutableListOf()
+        updatedList.add(cardItem)
+        _cards.value = updatedList
     }
 }

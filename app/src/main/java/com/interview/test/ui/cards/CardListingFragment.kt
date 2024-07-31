@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.interview.test.R
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding
-import com.interview.test.utils.toModelString
 import com.interview.test.viewmodel.CardsViewModel
 import com.interview.test.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import timber.log.Timber
 
 
 /**
@@ -44,6 +43,10 @@ class CardListingFragment : Fragment() {
         binding.toolbar.apply {
             ivBack.isVisible = true
             textTitle.setText(R.string.text_all_cards)
+
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
         cardsAdapter = CardsAdapter(showMemberName = true)
 

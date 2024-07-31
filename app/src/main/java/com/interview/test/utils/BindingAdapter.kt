@@ -2,9 +2,17 @@ package com.interview.test.utils
 
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.view.View
+import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
+import androidx.databinding.adapters.ListenerUtil
+import com.interview.test.R
 import com.interview.test.base.Constants
 import java.text.NumberFormat
 import java.util.Locale
@@ -71,3 +79,43 @@ fun setMaskedCardNumber(textView: AppCompatTextView, cardNumber: String?) {
 fun setTransactionDate(textView: AppCompatTextView, transactionDate: String?) {
     textView.text = transactionDate?.let { formatDateTime(it) } ?: Constants.NOT_AVAILABLE
 }
+
+@BindingAdapter("visible_unless")
+fun setVisibilityUnlessError(view: View, error: Boolean) {
+    view.isVisible = error
+}
+/*
+
+@BindingAdapter("android:text")
+fun setText(editText: AppCompatEditText, value: String?) {
+    if (editText.text.toString() != value) {
+        editText.setText(value)
+    }
+}
+
+@InverseBindingAdapter(attribute = "android:text", event = "android:textAttrChanged")
+fun getText(editText: AppCompatEditText): String {
+    return editText.text.toString()
+}
+
+@BindingAdapter("android:textAttrChanged")
+fun setListeners(editText: AppCompatEditText, attrChange: InverseBindingListener?) {
+    if (attrChange != null) {
+        val newTextWatcher = object : TextWatcherAdapter() {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                attrChange.onChange()
+            }
+        }
+        val oldTextWatcher = ListenerUtil.trackListener(editText, newTextWatcher, R.id.textWatcher)
+        if (oldTextWatcher != null) {
+            editText.removeTextChangedListener(oldTextWatcher)
+        }
+        editText.addTextChangedListener(newTextWatcher)
+    }
+}
+
+abstract class TextWatcherAdapter : android.text.TextWatcher {
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+    override fun afterTextChanged(s: android.text.Editable?) {}
+}*/

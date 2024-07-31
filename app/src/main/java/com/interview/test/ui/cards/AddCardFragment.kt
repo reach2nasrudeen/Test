@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.interview.test.R
 import com.interview.test.databinding.FragmentAddCardBinding
 import com.interview.test.model.CardType
@@ -18,6 +20,7 @@ import com.interview.test.utils.toModelString
 import com.interview.test.viewmodel.CardsViewModel
 import com.interview.test.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 
@@ -27,7 +30,8 @@ import timber.log.Timber
 class AddCardFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by activityViewModel<HomeViewModel>()
-    private val viewModel: CardsViewModel by activityViewModel<CardsViewModel>()
+    private val viewModel: CardsViewModel by viewModel<CardsViewModel>()
+
     private var _binding: FragmentAddCardBinding? = null
     private val binding
         get() = _binding!!
@@ -37,25 +41,42 @@ class AddCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddCardBinding.inflate(inflater, container, false)
+
+        binding.viewModel = viewModel
+        binding.uiState = viewModel.uiState
+        binding.lifecycleOwner = viewLifecycleOwner
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.uiState = viewModel.uiState
-        binding.lifecycleOwner = viewLifecycleOwner
         binding.toolbar.apply {
             ivBack.isVisible = true
             ivAlert.isVisible = false
             textTitle.setText(R.string.text_add_new_card)
+
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
 
         binding.btnAdd.setOnClickListener {
-            Timber.e("value--->${viewModel.uiState.toModelString()}")
+            Timber.e("uiState--value--->${viewModel.uiState.toModelString()}")
+            /*Timber.e("cardHolderName--value--->${viewModel.cardHolderName.value.toModelString()}")
+            Timber.e("cardNumber--value--->${viewModel.cardNumber.value.toModelString()}")
+            Timber.e("expiry---value--->${viewModel.expiry.value.toModelString()}")
+            Timber.e("cvv---value--->${viewModel.cvv.value.toModelString()}")
+            Timber.e("cardType---value--->${viewModel.cardType.value.toModelString()}")*/
+            viewModel.updateUiStateData(
+                cardHolderName = binding.edCardHolderName.text.toString(),
+                cardNumber = binding.edCardNumber.text.toString(),
+                expiryData = binding.edCardExpiry.text.toString(),
+                cvv = binding.edCardCvv.text.toString(),
+            )
+            viewModel.onAddCard()
         }
-
-
 
         binding.edCardType.setOnClickListener {
             KeyboardHandler.hideKeyboard(requireActivity())
@@ -67,6 +88,26 @@ class AddCardFragment : Fragment() {
                 if (editable.length > CARD_CVC_TOTAL_SYMBOLS) {
                     it.delete(CARD_CVC_TOTAL_SYMBOLS, it.length)
                 }
+            }
+        }
+
+        binding.edCardHolderName.doOnTextChanged { _, _, _, _ ->
+            viewModel.validateCardNameErrorState(true)
+        }
+        binding.edCardNumber.doOnTextChanged { _, _, _, _ ->
+            viewModel.validateCardNumberErrorState(true)
+        }
+        binding.edCardExpiry.doOnTextChanged { _, _, _, _ ->
+            viewModel.validateExpiryErrorState(true)
+        }
+        binding.edCardCvv.doOnTextChanged { _, _, _, _ ->
+            viewModel.validateCvvErrorState(true)
+        }
+
+        viewModel.addCardDetail.observe(viewLifecycleOwner) {
+            it?.let {
+                homeViewModel.updateCard(it)
+                findNavController().popBackStack()
             }
         }
     }

@@ -5,9 +5,14 @@
 
     <data>
 
+        <import type="android.view.View"/>
         <variable
             name="uiState"
             type="com.interview.test.model.UiState" />
+
+        <variable
+            name="viewModel"
+            type="com.interview.test.viewmodel.CardsViewModel" />
     </data>
 
     <LinearLayout
@@ -39,11 +44,23 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_rect_edittext"
             android:hint="@string/hint_card_holder_name"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapWords"
             android:padding="15dp"
             android:text="@={uiState.cardHolderName}"
             android:textColor="@color/light_grey"
             android:textColorHint="@color/color_border_edittext" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_error_card_holder_name"
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:text="@{viewModel.cardHolderNameState.message}"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            app:visible_unless="@{viewModel.cardHolderNameState.error}"
+            tools:text="@string/text_error_card_holder_name_empty" />
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/TextMedium"
@@ -69,6 +86,18 @@
             android:textColorHint="@color/color_border_edittext" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_error_card_number"
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:text="@{viewModel.cardNumberState.message}"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            app:visible_unless="@{viewModel.cardNumberState.error}"
+            tools:text="@string/text_error_card_number_empty" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,9 +115,21 @@
             android:background="@drawable/bg_rect_edittext"
             android:drawableEnd="@drawable/ic_vd_down_arrow"
             android:padding="15dp"
-            android:text="@={uiState.cardType}"
+            android:text="@{uiState.cardType}"
             android:textColor="@color/color_border_edittext"
             android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_error_card_type"
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:text="@{viewModel.cardTypeState.message}"
+            app:visible_unless="@{viewModel.cardTypeState.error}"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            tools:text="@string/text_error_card_type_empty" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,6 +166,18 @@
                     android:text="@={uiState.expiryDate}"
                     android:textColor="@color/light_grey"
                     android:textColorHint="@color/color_border_edittext" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_error_card_expiry"
+                    style="@style/TextMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:text="@{viewModel.cardExpiryState.message}"
+                    app:visible_unless="@{viewModel.cardExpiryState.error}"
+                    android:textColor="@color/red"
+                    android:textSize="12sp"
+                    tools:text="@string/text_error_card_expiry_empty" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,6 +208,18 @@
                     android:text="@={uiState.cvv}"
                     android:textColor="@color/light_grey"
                     android:textColorHint="@color/color_border_edittext" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_error_card_cvv"
+                    style="@style/TextMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:text="@{viewModel.cardCvvState.message}"
+                    app:visible_unless="@{viewModel.cardCvvState.error}"
+                    android:textColor="@color/red"
+                    android:textSize="12sp"
+                    tools:text="@string/text_error_card_cvv_empty" />
             </LinearLayout>
         </LinearLayout>
 
