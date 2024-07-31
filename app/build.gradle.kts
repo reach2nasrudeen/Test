@@ -65,4 +65,5 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.timber)
     implementation(libs.mp.android.chart)
+    implementation(libs.vico.views)
 }

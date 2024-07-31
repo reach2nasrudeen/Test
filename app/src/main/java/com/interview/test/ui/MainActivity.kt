@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-//        navController.navigate(R.id.navigation_card_summary)
+        navController.navigate(R.id.navigation_card_summary)
     }
 
     private fun setupObserver() {

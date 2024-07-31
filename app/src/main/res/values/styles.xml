@@ -33,5 +33,28 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="Chart1Line1Style">
+        <item name="color">@color/blue</item>
+    </style>
 
+    <style name="Chart1LineLayerStyle">
+        <item name="line1Style">@style/Chart1Line1Style</item>
+        <item name="color">@color/blue</item>
+    </style>
+    <style name="Chart1BottomAxisStyle">
+        <item name="color">@color/blue</item>
+    </style>
+
+
+    <style name="Chart9StartAxisStyle">
+        <item name="maxVerticalAxisItemCount">5</item>
+        <item name="showGuidelines">false</item>
+<!--        <item name="addExtremeHorizontalAxisLabelPadding">true</item>-->
+    </style>
+
+    <style name="Chart9BottomAxisStyle">
+        <item name="horizontalAxisLabelSpacing">2</item>
+        <item name="showGuidelines">false</item>
+<!--        <item name="addExtremeHorizontalAxisLabelPadding">true</item>-->
+    </style>
 </resources>
