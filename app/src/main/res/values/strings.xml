@@ -4,7 +4,7 @@
     <string name="text_home">Home</string>
     <string name="text_frequently_used">Frequently Used</string>
     <string name="text_mobile_recharge">Mobile Recharge</string>
-    <string name="text_bill_payment">Bill Payments</string>
+    <string name="text_bill_payment">Bill\nPayments</string>
     <string name="text_bank_transfer">Bank Transfer</string>
     <string name="text_request_money">Request Money</string>
     <string name="text_transfer_money">Transfer Money</string>

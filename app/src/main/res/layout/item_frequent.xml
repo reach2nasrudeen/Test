@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="70dp"
+    android:layout_width="80dp"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="70dp"
-        android:layout_height="75dp"
+        android:layout_width="80dp"
+        android:layout_height="85dp"
         android:outlineAmbientShadowColor="@android:color/transparent"
         android:outlineSpotShadowColor="@android:color/transparent"
         android:padding="10dp"
