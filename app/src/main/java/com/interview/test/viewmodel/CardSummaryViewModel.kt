@@ -13,6 +13,7 @@ import com.interview.test.model.Transaction
 import com.interview.test.network.Result
 import com.interview.test.network.asResult
 import com.interview.test.repository.CardsRepository
+import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -21,12 +22,11 @@ import java.time.format.DateTimeFormatter
 import kotlin.math.abs
 
 class CardSummaryViewModel(private val cardsRepository: CardsRepository) : ViewModel() {
-
     private val _balance = MutableLiveData(0.0)
     val balance: LiveData<Double> get() = _balance
 
     private val _graphType = MutableLiveData(GraphType.MONTH)
-    private val graphType: LiveData<GraphType> get() = _graphType
+    val graphType: LiveData<GraphType> get() = _graphType
 
     private val _summaryUiState = MutableLiveData(SummaryUiState())
     val summaryUiState: LiveData<SummaryUiState> get() = _summaryUiState

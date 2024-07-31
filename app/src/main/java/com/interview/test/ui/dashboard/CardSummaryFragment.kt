@@ -37,6 +37,10 @@ import java.time.format.DateTimeFormatter
  */
 class CardSummaryFragment : Fragment() {
 
+    private var monthChartModelProducer: CartesianChartModelProducer? = null
+    private var yearChartModelProducer: CartesianChartModelProducer? = null
+    private var dayChartModelProducer: CartesianChartModelProducer? = null
+
     private val viewModel: CardSummaryViewModel by viewModel<CardSummaryViewModel>()
 
     private var _binding: FragmentCardSummaryBinding? = null
@@ -85,7 +89,8 @@ class CardSummaryFragment : Fragment() {
     }
 
     private fun setupTabs() {
-        binding.tabLayout.getTabAt(1)?.select()
+
+        binding.tabLayout.getTabAt(viewModel.graphType.value?.position ?: 0)?.select()
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
 
@@ -123,36 +128,40 @@ class CardSummaryFragment : Fragment() {
 
     private fun setupDayChart(data: Map<LocalDate, Double>) {
         if (data.isEmpty()) return
-        val dayChartModelProducer = CartesianChartModelProducer()
+
         binding.chartViewDay.apply {
-            this.modelProducer = dayChartModelProducer
-            (chart?.bottomAxis as? HorizontalAxis)?.label = TextComponent(color = Color.BLACK)
-            (chart?.startAxis as? VerticalAxis)?.label = TextComponent(color = Color.BLACK)
-            chart?.marker = DefaultCartesianMarker(
-                label = TextComponent(color = Color.BLACK),
-                labelPosition = DefaultCartesianMarker.LabelPosition.AroundPoint,
-                guideline = LineComponent(
-                    color = Color.BLACK,
-                    shape = Shape.Rectangle,
-                    strokeColor = Color.BLACK,
-                    strokeThicknessDp = 5f
+            if (this.modelProducer == null) {
+                dayChartModelProducer = CartesianChartModelProducer()
+                this.modelProducer = dayChartModelProducer
+
+                (chart?.bottomAxis as? HorizontalAxis)?.label = TextComponent(color = Color.BLACK)
+                (chart?.startAxis as? VerticalAxis)?.label = TextComponent(color = Color.BLACK)
+                chart?.marker = DefaultCartesianMarker(
+                    label = TextComponent(color = Color.BLACK),
+                    labelPosition = DefaultCartesianMarker.LabelPosition.AroundPoint,
+                    guideline = LineComponent(
+                        color = Color.BLACK,
+                        shape = Shape.Rectangle,
+                        strokeColor = Color.BLACK,
+                        strokeThicknessDp = 5f
+                    )
                 )
-            )
 
-            val xToDateMapKey = ExtraStore.Key<Map<Float, LocalDate>>()
-            val xToDates = data.keys.associateBy { it.toEpochDay().toFloat() }
-            val dateTimeFormatter = DateTimeFormatter.ofPattern("d MMM")
+                val xToDateMapKey = ExtraStore.Key<Map<Float, LocalDate>>()
+                val xToDates = data.keys.associateBy { it.toEpochDay().toFloat() }
+                val dateTimeFormatter = DateTimeFormatter.ofPattern("d MMM")
 
-            (chart?.bottomAxis as HorizontalAxis<AxisPosition.Horizontal.Bottom>).valueFormatter =
-                CartesianValueFormatter { x, chartValues, _ ->
-                    (chartValues.model.extraStore[xToDateMapKey][x.toFloat()]
-                        ?: LocalDate.ofEpochDay(x.toLong()))
-                        .format(dateTimeFormatter)
-                }
-            lifecycleScope.launch {
-                dayChartModelProducer.runTransaction {
-                    lineSeries { series(xToDates.keys, data.values) }
-                    extras { it[xToDateMapKey] = xToDates }
+                (chart?.bottomAxis as HorizontalAxis<AxisPosition.Horizontal.Bottom>).valueFormatter =
+                    CartesianValueFormatter { x, chartValues, _ ->
+                        (chartValues.model.extraStore[xToDateMapKey][x.toFloat()]
+                            ?: LocalDate.ofEpochDay(x.toLong()))
+                            .format(dateTimeFormatter)
+                    }
+                lifecycleScope.launch {
+                    dayChartModelProducer?.runTransaction {
+                        lineSeries { series(xToDates.keys, data.values) }
+                        extras { it[xToDateMapKey] = xToDates }
+                    }
                 }
             }
         }
@@ -160,37 +169,40 @@ class CardSummaryFragment : Fragment() {
 
     private fun setupMonthChart(data: Map<LocalDate, Double>) {
         if (data.isEmpty()) return
-        val monthChartModelProducer = CartesianChartModelProducer()
+
         binding.chartViewMonth.apply {
-            this.modelProducer = monthChartModelProducer
-            (chart?.bottomAxis as? HorizontalAxis)?.label = TextComponent(color = Color.BLACK)
-            (chart?.startAxis as? VerticalAxis)?.label = TextComponent(color = Color.BLACK)
+            if (this.modelProducer == null) {
+                monthChartModelProducer = CartesianChartModelProducer()
+                this.modelProducer = monthChartModelProducer
+                (chart?.bottomAxis as? HorizontalAxis)?.label = TextComponent(color = Color.BLACK)
+                (chart?.startAxis as? VerticalAxis)?.label = TextComponent(color = Color.BLACK)
 
-            chart?.marker = DefaultCartesianMarker(
-                label = TextComponent(color = Color.BLACK),
-                labelPosition = DefaultCartesianMarker.LabelPosition.AroundPoint,
-                guideline = LineComponent(
-                    color = Color.BLACK,
-                    shape = Shape.Pill,
-                    strokeColor = Color.BLACK,
-                    strokeThicknessDp = 5f
+                chart?.marker = DefaultCartesianMarker(
+                    label = TextComponent(color = Color.BLACK),
+                    labelPosition = DefaultCartesianMarker.LabelPosition.AroundPoint,
+                    guideline = LineComponent(
+                        color = Color.BLACK,
+                        shape = Shape.Pill,
+                        strokeColor = Color.BLACK,
+                        strokeThicknessDp = 5f
+                    )
                 )
-            )
 
-            val xToDateMapKey = ExtraStore.Key<Map<Float, LocalDate>>()
-            val xToDates = data.keys.associateBy { it.toEpochDay().toFloat() }
-            val dateTimeFormatter = DateTimeFormatter.ofPattern("MMM")
+                val xToDateMapKey = ExtraStore.Key<Map<Float, LocalDate>>()
+                val xToDates = data.keys.associateBy { it.toEpochDay().toFloat() }
+                val dateTimeFormatter = DateTimeFormatter.ofPattern("MMM")
 
-            (chart?.bottomAxis as HorizontalAxis<AxisPosition.Horizontal.Bottom>).valueFormatter =
-                CartesianValueFormatter { x, chartValues, _ ->
-                    (chartValues.model.extraStore[xToDateMapKey][x.toFloat()]
-                        ?: LocalDate.ofEpochDay(x.toLong()))
-                        .format(dateTimeFormatter)
-                }
-            lifecycleScope.launch {
-                monthChartModelProducer.runTransaction {
-                    lineSeries { series(xToDates.keys, data.values) }
-                    extras { it[xToDateMapKey] = xToDates }
+                (chart?.bottomAxis as HorizontalAxis<AxisPosition.Horizontal.Bottom>).valueFormatter =
+                    CartesianValueFormatter { x, chartValues, _ ->
+                        (chartValues.model.extraStore[xToDateMapKey][x.toFloat()]
+                            ?: LocalDate.ofEpochDay(x.toLong()))
+                            .format(dateTimeFormatter)
+                    }
+                lifecycleScope.launch {
+                    monthChartModelProducer?.runTransaction {
+                        lineSeries { series(xToDates.keys, data.values) }
+                        extras { it[xToDateMapKey] = xToDates }
+                    }
                 }
             }
         }
@@ -198,9 +210,13 @@ class CardSummaryFragment : Fragment() {
 
     private fun setupYearChart(data: Map<Int, Double>) {
         if (data.isEmpty()) return
-        val yearChartModelProducer = CartesianChartModelProducer()
+
         binding.chartViewYear.apply {
-            this.modelProducer = yearChartModelProducer
+            if (this.modelProducer == null) {
+                yearChartModelProducer = CartesianChartModelProducer()
+                this.modelProducer = yearChartModelProducer
+            }
+
             (chart?.bottomAxis as? HorizontalAxis)?.label = TextComponent(color = Color.BLACK)
             (chart?.startAxis as? VerticalAxis)?.label = TextComponent(color = Color.BLACK)
             chart?.marker = DefaultCartesianMarker(
@@ -215,7 +231,7 @@ class CardSummaryFragment : Fragment() {
             )
 
             lifecycleScope.launch {
-                yearChartModelProducer.runTransaction {
+                yearChartModelProducer?.runTransaction {
                     lineSeries { series(data.keys, data.values) }
                 }
             }

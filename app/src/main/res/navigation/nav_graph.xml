@@ -6,9 +6,6 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.interview.test.ui.dashboard.DashboardFragment">
-        <action
-            android:id="@+id/action_card_summary"
-            app:destination="@id/navigation_card_summary" />
     </fragment>
 
 
