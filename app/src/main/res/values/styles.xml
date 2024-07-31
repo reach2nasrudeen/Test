@@ -27,11 +27,6 @@
     </declare-styleable>
 
 
-    <style name="CustomButtonShape" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
-
     <style name="CustomTabTextAppearance" parent="TextAppearance.MaterialComponents.Button">
         <item name="fontFamily">sans-serif-medium</item>
         <item name="android:fontFamily">sans-serif-medium</item>
