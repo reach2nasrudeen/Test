@@ -30,7 +30,7 @@
             android:orientation="vertical"
             android:visibility="gone"
             app:visible_unless="@{viewModel.summaryUiState.success}"
-            tools:visibility="gone">
+            tools:visibility="visible">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -129,11 +129,50 @@
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <com.github.mikephil.charting.charts.LineChart
-                        android:id="@+id/chart_transactions"
+                    <com.patrykandpatrick.vico.views.cartesian.CartesianChartView
+                        android:id="@+id/chart_view_day"
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:background="@color/white" />
+                        android:layout_height="wrap_content"
+                        app:bottomAxisStyle="@style/ChartDayBottomAxisStyle"
+                        app:chartZoomEnabled="false"
+                        app:layers="line"
+                        app:lineLayerStyle="@style/ChartLineLayerStyle"
+                        app:showBottomAxis="true"
+                        app:showEndAxis="false"
+                        app:showStartAxis="true"
+                        app:showTopAxis="false"
+                        app:startAxisStyle="@style/ChartDayStartAxisStyle"
+                        app:visible_unless="@{viewModel.isDayGraphSelected}" />
+
+                    <com.patrykandpatrick.vico.views.cartesian.CartesianChartView
+                        android:id="@+id/chart_view_month"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:bottomAxisStyle="@style/ChartMonthBottomAxisStyle"
+                        app:chartZoomEnabled="false"
+                        app:layers="line"
+                        app:lineLayerStyle="@style/ChartLineLayerStyle"
+                        app:showBottomAxis="true"
+                        app:showEndAxis="false"
+                        app:showStartAxis="true"
+                        app:showTopAxis="false"
+                        app:startAxisStyle="@style/ChartMonthStartAxisStyle"
+                        app:visible_unless="@{viewModel.isMonthGraphSelected}" />
+
+                    <com.patrykandpatrick.vico.views.cartesian.CartesianChartView
+                        android:id="@+id/chart_view_year"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:bottomAxisStyle="@style/ChartYearBottomAxisStyle"
+                        app:chartZoomEnabled="false"
+                        app:layers="line"
+                        app:lineLayerStyle="@style/ChartLineLayerStyle"
+                        app:showBottomAxis="true"
+                        app:showEndAxis="false"
+                        app:showStartAxis="true"
+                        app:showTopAxis="false"
+                        app:startAxisStyle="@style/ChartYearStartAxisStyle"
+                        app:visible_unless="@{viewModel.isYearGraphSelected}" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         style="@style/TextMedium"
@@ -183,7 +222,7 @@
             android:paddingBottom="80dp"
             android:visibility="gone"
             app:visible_unless="@{viewModel.summaryUiState.error}"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_error"

@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity() {
                 updateFabIcon()
             }
         })
-
-//        navController.navigate(R.id.navigation_card_summary)
     }
 
     private fun setupObserver() {

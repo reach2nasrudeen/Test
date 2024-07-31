@@ -34,4 +34,52 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="ChartLineStyle">
+        <item name="color">@color/blue</item>
+    </style>
+    <style name="ChartGuideLineStyle">
+        <item name="color">@color/light_grey</item>
+    </style>
+
+    <style name="ChartLineLayerStyle">
+        <item name="line1Style">@style/ChartLineStyle</item>
+        <item name="color">@color/blue</item>
+    </style>
+    <style name="Chart1BottomAxisStyle">
+        <item name="color">@color/blue</item>
+    </style>
+
+
+    <style name="ChartDayStartAxisStyle">
+        <item name="maxVerticalAxisItemCount">5</item>
+        <item name="showGuidelines">true</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
+    </style>
+
+    <style name="ChartDayBottomAxisStyle">
+        <item name="horizontalAxisLabelSpacing">3</item>
+        <item name="showGuidelines">false</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
+    </style>
+
+    <style name="ChartMonthStartAxisStyle">
+        <item name="maxVerticalAxisItemCount">5</item>
+        <item name="showGuidelines">true</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
+    </style>
+
+    <style name="ChartMonthBottomAxisStyle">
+        <item name="horizontalAxisLabelSpacing">2</item>
+        <item name="showGuidelines">false</item>
+    </style>
+
+    <style name="ChartYearStartAxisStyle">
+        <item name="maxVerticalAxisItemCount">5</item>
+        <item name="showGuidelines">true</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
+    </style>
+
+    <style name="ChartYearBottomAxisStyle">
+        <item name="showGuidelines">false</item>
+    </style>
 </resources>

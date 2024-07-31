@@ -5,4 +5,7 @@ object Constants {
     const val CARDS_URL = "card-management/get-cards"
 
     const val NOT_AVAILABLE = "N/A"
+
+
+    const val TF_DEFAULT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 }
