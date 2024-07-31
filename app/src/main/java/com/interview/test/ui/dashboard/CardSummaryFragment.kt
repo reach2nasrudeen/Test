@@ -69,24 +69,56 @@ class CardSummaryFragment : Fragment() {
             }
         }
         setupTransactions()
-        setupObserver()
         setupTabs()
+        setupObserver()
 
         viewModel.getCardSummary()
 
         binding.btnTryNow.setOnClickListener {
             viewModel.getCardSummary()
         }
+    }
 
+    private fun setupTransactions() {
+        transactionsAdapter = TransactionsAdapter()
+        binding.rvTransactions.adapter = transactionsAdapter
+    }
+
+    private fun setupTabs() {
+        binding.tabLayout.getTabAt(1)?.select()
+        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+
+                when (tab?.text) {
+                    getString(R.string.text_day) -> GraphType.DAY
+                    getString(R.string.text_month) -> GraphType.MONTH
+                    getString(R.string.text_yearly) -> GraphType.YEARLY
+                    else -> null
+                }?.let {
+                    viewModel.updateSelectedGraphType(it)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                // No-Op
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                // No-Op
+            }
+
+        })
+    }
+
+    private fun setupObserver() {
         viewModel.transactions.observe(viewLifecycleOwner) {
+            transactionsAdapter?.updateData(it)
             if (it.isNotEmpty()) {
-
                 setupDayChart(viewModel.getTransactionsForDay())
                 setupMonthChart(viewModel.getTransactionsForMonth())
                 setupYearChart(viewModel.getTransactionsForYear())
             }
         }
-
     }
 
     private fun setupDayChart(data: Map<LocalDate, Double>) {
@@ -187,43 +219,6 @@ class CardSummaryFragment : Fragment() {
                     lineSeries { series(data.keys, data.values) }
                 }
             }
-        }
-    }
-
-    private fun setupTransactions() {
-        transactionsAdapter = TransactionsAdapter()
-        binding.rvTransactions.adapter = transactionsAdapter
-    }
-
-    private fun setupTabs() {
-        binding.tabLayout.getTabAt(1)?.select()
-        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-
-                when (tab?.text) {
-                    getString(R.string.text_day) -> GraphType.DAY
-                    getString(R.string.text_month) -> GraphType.MONTH
-                    getString(R.string.text_yearly) -> GraphType.YEARLY
-                    else -> null
-                }?.let {
-                    viewModel.updateSelectedGraphType(it)
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // No-Op
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // No-Op
-            }
-
-        })
-    }
-
-    private fun setupObserver() {
-        viewModel.transactions.observe(viewLifecycleOwner) {
-            transactionsAdapter?.updateData(it)
         }
     }
 

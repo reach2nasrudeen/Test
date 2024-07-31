@@ -7,8 +7,5 @@ object Constants {
     const val NOT_AVAILABLE = "N/A"
 
 
-    const val TF_YYYY_MM_DD = "yyyy-MM-dd"
-    //    const val TF_DEFAULT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-    const val TF_DEFAULT_1 = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-    const val TF_DEFAULT_2 = "yyyy-MM-dd'T'HH:mm:ss"
+    const val TF_DEFAULT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 }

@@ -14,7 +14,6 @@ retrofit = "2.9.0"
 okHttpLogging = "4.12.0"
 koinAndroid ="3.5.6"
 timber = "5.0.1"
-mpAndroidChart = "v3.1.0"
 vico = "2.0.0-alpha.26"
 
 
@@ -34,9 +33,7 @@ retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ver
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpLogging" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinAndroid" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
-mp-android-chart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpAndroidChart" }
 vico-views = { group = "com.patrykandpatrick.vico", name = "views", version.ref = "vico" }
-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

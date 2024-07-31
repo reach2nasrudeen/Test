@@ -62,8 +62,7 @@ class CardSummaryViewModel(private val cardsRepository: CardsRepository) : ViewM
         }
     }
 
-    fun updateCardSummary(cardResponse: CardResponse) {
-        _summaryUiState.postValue(SummaryUiState(success = true))
+    private fun updateCardSummary(cardResponse: CardResponse) {
         _transactions.postValue(cardResponse.transactions.orEmpty())
         _balance.postValue(cardResponse.cardSummary?.currentBalance ?: 0.0)
     }
@@ -78,7 +77,7 @@ class CardSummaryViewModel(private val cardsRepository: CardsRepository) : ViewM
         }?.groupBy {
             LocalDate.parse(
                 it.date.orEmpty(),
-                DateTimeFormatter.ofPattern(Constants.TF_DEFAULT_1)
+                DateTimeFormatter.ofPattern(Constants.TF_DEFAULT)
             )
         }?.mapValues { entry -> entry.value.sumOf { abs(it.amount ?: 0.0) } }.orEmpty()
     }
@@ -90,7 +89,7 @@ class CardSummaryViewModel(private val cardsRepository: CardsRepository) : ViewM
             YearMonth.from(
                 LocalDate.parse(
                     it.date.orEmpty(),
-                    DateTimeFormatter.ofPattern(Constants.TF_DEFAULT_1)
+                    DateTimeFormatter.ofPattern(Constants.TF_DEFAULT)
                 )
             ).atEndOfMonth()
         }?.mapValues { entry -> entry.value.sumOf { abs(it.amount ?: 0.0) } }.orEmpty()
@@ -112,7 +111,7 @@ class CardSummaryViewModel(private val cardsRepository: CardsRepository) : ViewM
         }?.forEach { transaction ->
             val transactionYear = LocalDate.parse(
                 transaction.date.orEmpty(),
-                DateTimeFormatter.ofPattern(Constants.TF_DEFAULT_1)
+                DateTimeFormatter.ofPattern(Constants.TF_DEFAULT)
             ).year
 
             yearlyData[transactionYear] =
