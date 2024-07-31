@@ -41,4 +41,6 @@
     <string name="text_error_card_cvv_empty">CVV cannot be empty</string>
     <string name="text_error_card_cvv_length">CVV must have 3 digits</string>
     <string name="text_error_invalid">Invalid</string>
+    <string name="text_error_something_went_wrong">Something went wrong.\nPlease try again later.</string>
+    <string name="text_try_now">Try now</string>
 </resources>

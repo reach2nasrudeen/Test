@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import com.interview.test.R
 import com.interview.test.adapter.TransactionsAdapter
 import com.interview.test.databinding.FragmentCardSummaryBinding
-import com.interview.test.viewmodel.CardsViewModel
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import com.interview.test.viewmodel.CardSummaryViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -18,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.activityViewModel
  */
 class CardSummaryFragment : Fragment() {
 
-    private val viewModel: CardsViewModel by activityViewModel<CardsViewModel>()
+    private val viewModel: CardSummaryViewModel by viewModel<CardSummaryViewModel>()
 
     private var _binding: FragmentCardSummaryBinding? = null
     private val binding
@@ -50,19 +50,23 @@ class CardSummaryFragment : Fragment() {
                 activity?.onBackPressedDispatcher?.onBackPressed()
             }
         }
-
-        transactionsAdapter = TransactionsAdapter()
-        binding.rvTransactions.adapter = transactionsAdapter
+        setupTransactions()
+        setupObserver()
 
         viewModel.getCardSummary()
 
-        /*lifecycleScope.launch {
-            requireContext().getObjectFromJson<CardResponse>("card_summary.json").let {
-                viewModel.updateCardSummary(it)
-            }
-        }*/
 
+        binding.btnTryNow.setOnClickListener {
+            viewModel.getCardSummary()
+        }
+    }
 
+    private fun setupTransactions() {
+        transactionsAdapter = TransactionsAdapter()
+        binding.rvTransactions.adapter = transactionsAdapter
+    }
+
+    private fun setupObserver() {
         viewModel.transactions.observe(viewLifecycleOwner) {
             transactionsAdapter?.updateData(it)
         }

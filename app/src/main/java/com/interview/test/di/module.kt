@@ -7,7 +7,7 @@ import com.interview.test.base.Constants
 import com.interview.test.network.CardsApiService
 import com.interview.test.repository.CardsRepository
 import com.interview.test.viewmodel.CardsViewModel
-import com.interview.test.viewmodel.DashboardViewModel
+import com.interview.test.viewmodel.CardSummaryViewModel
 import com.interview.test.viewmodel.HomeViewModel
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit
 
 val viewModelModule = module {
     viewModel { HomeViewModel() }
-    viewModel { DashboardViewModel() }
-    viewModel { CardsViewModel(get()) }
+    viewModel { CardSummaryViewModel(get()) }
+    viewModel { CardsViewModel() }
 }
 
 

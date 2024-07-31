@@ -3,26 +3,18 @@ package com.interview.test.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.interview.test.R
 import com.interview.test.model.CardItem
-import com.interview.test.model.CardResponse
 import com.interview.test.model.CardType
 import com.interview.test.model.CardUiErrorState
-import com.interview.test.model.Transaction
 import com.interview.test.model.UiState
-import com.interview.test.repository.CardsRepository
 import com.interview.test.utils.removeWhiteSpace
 import com.interview.test.utils.trimmedOrEmpty
-import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel() {
+class CardsViewModel : ViewModel() {
 
     var uiState: UiState = UiState()
-
-    private val _transactions = MutableLiveData<List<Transaction>>()
-    val transactions: LiveData<List<Transaction>> get() = _transactions
 
     private val _cardHolderNameState = MutableLiveData(CardUiErrorState())
     val cardHolderNameState: LiveData<CardUiErrorState> get() = _cardHolderNameState
@@ -39,24 +31,8 @@ class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel()
     private val _cardCvvState = MutableLiveData(CardUiErrorState())
     val cardCvvState: LiveData<CardUiErrorState> get() = _cardCvvState
 
-    private val _balance = MutableLiveData<Double>()
-    val balance: LiveData<Double> get() = _balance
-
     private val _addCardDetail = MutableLiveData<CardItem>()
     val addCardDetail: LiveData<CardItem> get() = _addCardDetail
-
-    fun getCardSummary() {
-        viewModelScope.launch {
-            cardsRepository.getCardSummary().collect {
-                updateCardSummary(it)
-            }
-        }
-    }
-
-    fun updateCardSummary(cardResponse: CardResponse) {
-        _transactions.postValue(cardResponse.transactions.orEmpty())
-        _balance.postValue(cardResponse.cardSummary?.currentBalance ?: 0.0)
-    }
 
     fun updateCardType(cardType: CardType) {
         uiState = uiState.copy(cardType = cardType.type)

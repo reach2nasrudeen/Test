@@ -9,19 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 
 class CardsRepository(private val cardsApiService: CardsApiService) {
 
-
     fun getCardSummary(): Flow<CardResponse> = flow {
-        try {
-            emit(
-                cardsApiService.getCards()
-            )
-        } catch (exception: Exception) {
-            emit(
-                CardResponse().apply {
-                    error = true
-                    this.exception = exception
-                }
-            )
-        }
+        emit(cardsApiService.getCards())
     }.flowOn(Dispatchers.IO)
 }
