@@ -69,7 +69,6 @@
     </style>
 
     <style name="ChartMonthBottomAxisStyle">
-        <item name="horizontalAxisLabelSpacing">2</item>
         <item name="showGuidelines">false</item>
     </style>
 
