@@ -3,15 +3,10 @@ package com.interview.test.utils
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.view.View
-import android.widget.EditText
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
-import androidx.databinding.InverseBindingAdapter
-import androidx.databinding.InverseBindingListener
-import androidx.databinding.adapters.ListenerUtil
 import com.interview.test.R
 import com.interview.test.base.Constants
 import java.text.NumberFormat

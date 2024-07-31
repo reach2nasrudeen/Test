@@ -1,11 +1,11 @@
 package com.interview.test.ui.cards
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.interview.test.R
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding

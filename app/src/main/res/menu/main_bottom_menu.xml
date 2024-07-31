@@ -11,9 +11,7 @@
         android:icon="@drawable/ic_vd_statistics"
         android:title="" />
 
-    <item
-        android:id="@+id/navigation_action"
-        android:title="" />
+    <item android:title="" />
 
     <item
         android:id="@+id/navigation_card_listing"

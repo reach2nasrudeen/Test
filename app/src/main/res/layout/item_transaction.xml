@@ -31,8 +31,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_margin="10dp"
-                app:transaction_type="@{transaction.type}"
-                app:srcCompat="@drawable/ic_vd_received" />
+                app:srcCompat="@drawable/ic_vd_received"
+                app:transaction_type="@{transaction.type}" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout

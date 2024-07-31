@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorBottomNavSelected">#FF0000</color> <!-- Selected state color -->
+    <!-- Selected state color -->
 
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
@@ -11,10 +11,6 @@
 
     <color name="light_grey">#6D7278</color>
     <color name="mild_grey">#4D4D4D</color>
-    <color name="milder_grey">#A7A7A7</color>
-    <color name="border_grey">#F0F0F0</color>
-    <color name="view_grey">#F6F6F6</color>
-    <color name="dash_grey">#EFEFEF</color>
     <color name="bg_grey">#EEEEEE</color>
     <color name="green">#33d28a</color>
     <color name="green_trans">#4033d28a</color>
@@ -34,5 +30,5 @@
     <color name="color_border_edittext">#c7c5e6</color>
     <color name="purple">#FF00FF</color>
     <color name="purple_trans">#33FF00FF</color>
-<!--    <color name="purple_trans">F8E5F8</color>-->
+    <!--    <color name="purple_trans">F8E5F8</color>-->
 </resources>

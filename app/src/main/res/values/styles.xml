@@ -37,15 +37,13 @@
     <style name="ChartLineStyle">
         <item name="color">@color/blue</item>
     </style>
+
     <style name="ChartGuideLineStyle">
         <item name="color">@color/light_grey</item>
     </style>
 
     <style name="ChartLineLayerStyle">
         <item name="line1Style">@style/ChartLineStyle</item>
-        <item name="color">@color/blue</item>
-    </style>
-    <style name="Chart1BottomAxisStyle">
         <item name="color">@color/blue</item>
     </style>
 

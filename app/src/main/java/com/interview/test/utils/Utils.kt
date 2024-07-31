@@ -10,7 +10,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
-import com.interview.test.R
 import timber.log.Timber
 import java.io.IOException
 import java.io.InputStream

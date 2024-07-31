@@ -6,8 +6,8 @@ import com.interview.test.CardsApp
 import com.interview.test.base.Constants
 import com.interview.test.network.CardsApiService
 import com.interview.test.repository.CardsRepository
-import com.interview.test.viewmodel.CardsViewModel
 import com.interview.test.viewmodel.CardSummaryViewModel
+import com.interview.test.viewmodel.CardsViewModel
 import com.interview.test.viewmodel.HomeViewModel
 import okhttp3.Cache
 import okhttp3.OkHttpClient
