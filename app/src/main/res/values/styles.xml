@@ -33,12 +33,16 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="Chart1Line1Style">
+
+    <style name="ChartLineStyle">
         <item name="color">@color/blue</item>
     </style>
+    <style name="ChartGuideLineStyle">
+        <item name="color">@color/light_grey</item>
+    </style>
 
-    <style name="Chart1LineLayerStyle">
-        <item name="line1Style">@style/Chart1Line1Style</item>
+    <style name="ChartLineLayerStyle">
+        <item name="line1Style">@style/ChartLineStyle</item>
         <item name="color">@color/blue</item>
     </style>
     <style name="Chart1BottomAxisStyle">
@@ -46,15 +50,36 @@
     </style>
 
 
-    <style name="Chart9StartAxisStyle">
+    <style name="ChartDayStartAxisStyle">
         <item name="maxVerticalAxisItemCount">5</item>
-        <item name="showGuidelines">false</item>
-<!--        <item name="addExtremeHorizontalAxisLabelPadding">true</item>-->
+        <item name="showGuidelines">true</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
     </style>
 
-    <style name="Chart9BottomAxisStyle">
+    <style name="ChartDayBottomAxisStyle">
+        <item name="horizontalAxisLabelSpacing">3</item>
+        <item name="showGuidelines">false</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
+    </style>
+
+    <style name="ChartMonthStartAxisStyle">
+        <item name="maxVerticalAxisItemCount">5</item>
+        <item name="showGuidelines">true</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
+    </style>
+
+    <style name="ChartMonthBottomAxisStyle">
         <item name="horizontalAxisLabelSpacing">2</item>
         <item name="showGuidelines">false</item>
-<!--        <item name="addExtremeHorizontalAxisLabelPadding">true</item>-->
+    </style>
+
+    <style name="ChartYearStartAxisStyle">
+        <item name="maxVerticalAxisItemCount">5</item>
+        <item name="showGuidelines">true</item>
+        <item name="guidelineStyle">@style/ChartGuideLineStyle</item>
+    </style>
+
+    <style name="ChartYearBottomAxisStyle">
+        <item name="showGuidelines">false</item>
     </style>
 </resources>
