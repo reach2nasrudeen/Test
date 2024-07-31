@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import com.interview.test.R
 import com.interview.test.adapter.CardsAdapter
 import com.interview.test.databinding.FragmentCardListingBinding
-import com.interview.test.viewmodel.CardsViewModel
 import com.interview.test.viewmodel.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -23,7 +21,6 @@ class CardListingFragment : Fragment() {
     private var cardsAdapter: CardsAdapter? = null
 
     private val homeViewModel: HomeViewModel by activityViewModel<HomeViewModel>()
-    private val viewModel: CardsViewModel by activityViewModel<CardsViewModel>()
 
     private var _binding: FragmentCardListingBinding? = null
     private val binding
@@ -45,7 +42,7 @@ class CardListingFragment : Fragment() {
             textTitle.setText(R.string.text_all_cards)
 
             ivBack.setOnClickListener {
-                findNavController().popBackStack()
+                activity?.onBackPressedDispatcher?.onBackPressed()
             }
         }
         cardsAdapter = CardsAdapter(showMemberName = true)

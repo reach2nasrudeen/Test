@@ -13,10 +13,9 @@ import com.interview.test.model.Transaction
 import com.interview.test.model.UiState
 import com.interview.test.repository.CardsRepository
 import com.interview.test.utils.removeWhiteSpace
-import com.interview.test.utils.toModelString
 import com.interview.test.utils.trimmedOrEmpty
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import java.util.Calendar
 
 class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel() {
 
@@ -68,10 +67,19 @@ class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel()
         _cardHolderNameState.value = if (reset) {
             _cardHolderNameState.value?.copy(error = false)
         } else {
-            _cardHolderNameState.value?.copy(
-                error = uiState.cardHolderName.isEmpty(),
-                message = R.string.text_error_card_holder_name_empty
-            )
+            if (uiState.cardHolderName.isEmpty()) {
+                _cardHolderNameState.value?.copy(
+                    error = true,
+                    message = R.string.text_error_card_holder_name_empty
+                )
+            } else if (uiState.cardHolderName.length < 3) {
+                _cardHolderNameState.value?.copy(
+                    error = true,
+                    message = R.string.text_error_card_holder_name_min_length
+                )
+            } else {
+                _cardHolderNameState.value?.copy(error = false)
+            }
         }
     }
 
@@ -79,14 +87,23 @@ class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel()
         _cardNumberState.value = if (reset) {
             _cardNumberState.value?.copy(error = false)
         } else {
-            _cardNumberState.value?.copy(
-                error = uiState.cardNumber.isEmpty(),
-                message = R.string.text_error_card_number_empty
-            )
+            if (uiState.cardNumber.isEmpty()) {
+                _cardNumberState.value?.copy(
+                    error = true,
+                    message = R.string.text_error_card_number_empty
+                )
+            } else if (uiState.cardNumber.removeWhiteSpace().length < 16) {
+                _cardNumberState.value?.copy(
+                    error = true,
+                    message = R.string.text_error_card_number_length
+                )
+            } else {
+                _cardNumberState.value?.copy(error = false)
+            }
         }
     }
 
-    fun validateCardTypeErrorState(reset: Boolean = false) {
+    private fun validateCardTypeErrorState(reset: Boolean = false) {
         _cardTypeState.value = if (reset) {
             _cardTypeState.value?.copy(error = false)
         } else {
@@ -101,45 +118,70 @@ class CardsViewModel(private val cardsRepository: CardsRepository) : ViewModel()
         _cardExpiryState.value = if (reset) {
             _cardExpiryState.value?.copy(error = false)
         } else {
-            _cardExpiryState.value?.copy(
-                error = uiState.expiryDate.isEmpty(),
-                message = R.string.text_error_card_expiry_empty
-            )
+            validateDate().let {
+                _cardExpiryState.value?.copy(
+                    error = it.first,
+                    message = it.second
+                )
+            }
         }
+    }
+
+    private fun validateDate(): Pair<Boolean, Int> {
+        val expiryData = uiState.expiryDate
+        val error: Boolean
+        var errorId: Int = R.string.text_error_card_expiry_empty
+
+        if (expiryData.isEmpty()) {
+            error = true
+            errorId = R.string.text_error_card_expiry_empty
+        } else if (expiryData.length == 5) {
+            val month = expiryData.substring(0, 2).toIntOrNull()
+            val year = "20" + expiryData.substring(3, 5)
+
+            if (month == null || month < 1 || month > 12) {
+                error = true
+                errorId = R.string.text_error_card_expiry_invalid_month
+            } else {
+                val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+                val currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
+
+                val enteredYear = year.toInt()
+                if (enteredYear < currentYear || (enteredYear == currentYear && month < currentMonth)) {
+                    error = true
+                    errorId = R.string.text_error_card_expired
+                } else {
+                    error = false
+                }
+            }
+        } else {
+            error = true
+            errorId = R.string.text_error_card_expiry_invalid
+        }
+        return Pair(error, errorId)
     }
 
     fun validateCvvErrorState(reset: Boolean = false) {
         _cardCvvState.value = if (reset) {
             _cardCvvState.value?.copy(error = false)
         } else {
-            _cardCvvState.value?.copy(
-                error = uiState.cvv.isEmpty(),
-                message = R.string.text_error_card_cvv_empty
-            )
+            if (uiState.cvv.isEmpty()) {
+                _cardCvvState.value?.copy(
+                    error = true,
+                    message = R.string.text_error_card_cvv_empty
+                )
+            } else if (uiState.cvv.length < 3) {
+                _cardCvvState.value?.copy(
+                    error = true,
+                    message = R.string.text_error_card_cvv_length
+                )
+            } else {
+                _cardCvvState.value?.copy(error = false)
+            }
         }
     }
 
     private fun isFormValid(): Boolean {
-        Timber.e("isFormValid----cardHolderNameState---->${cardHolderNameState.value.toModelString()}")
-        Timber.e("isFormValid----cardHolderName---->${uiState.cardHolderName}")
-
-        Timber.e("isFormValid---------------------------")
-        Timber.e("isFormValid----cardNumberState---->${cardNumberState.value.toModelString()}")
-        Timber.e("isFormValid----cardNumber---->${uiState.cardNumber}")
-
-        Timber.e("isFormValid---------------------------")
-        Timber.e("isFormValid----cardTypeState---->${cardTypeState.value.toModelString()}")
-        Timber.e("isFormValid----cardType---->${uiState.cardType}")
-
-        Timber.e("isFormValid---------------------------")
-        Timber.e("isFormValid----cardExpiryState---->${cardExpiryState.value.toModelString()}")
-        Timber.e("isFormValid----expiryDate---->${uiState.expiryDate}")
-
-        Timber.e("isFormValid---------------------------")
-        Timber.e("isFormValid----cardCvvState---->${cardCvvState.value.toModelString()}")
-        Timber.e("isFormValid----cvv---->${uiState.cvv}")
-
-        Timber.e("isFormValid---------------------------")
         return !cardHolderNameState.value?.error!!
                 && !cardNumberState.value?.error!!
                 && !cardTypeState.value?.error!!

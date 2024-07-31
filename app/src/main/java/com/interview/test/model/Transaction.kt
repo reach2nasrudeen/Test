@@ -10,7 +10,4 @@ data class Transaction(
     @SerializedName("transaction_id")
     val transactionId: String? = null,
     val type: String? = null
-) {
-
-    fun getFormattedAmount() = String.format("$${amount}")
-}
+)

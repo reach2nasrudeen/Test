@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="2"
             tools:listitem="@layout/item_card" />
@@ -66,15 +66,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    app:card_bg="@color/green_trans"
-                    app:icon="@drawable/ic_vd_send"
+                    app:card_bg="@color/yellow_trans"
+                    app:icon="@drawable/ic_vd_transfer"
                     app:text="@string/text_bank_transfer" />
 
                 <com.interview.test.widget.FrequentItemView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    app:card_bg="@color/green_trans"
+                    app:card_bg="@color/blue_trans"
                     app:icon="@drawable/ic_vd_phone"
                     app:text="@string/text_request_money" />
 
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 app:card_bg="@color/red_trans"
-                app:icon="@drawable/ic_vd_phone"
+                app:icon="@drawable/ic_vd_bank"
                 app:text="@string/text_open_account" />
 
             <com.interview.test.widget.ServiceItemView

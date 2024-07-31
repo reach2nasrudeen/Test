@@ -6,7 +6,6 @@ import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
-import java.util.Calendar
 
 class ExpiryDateEditText(context: Context, attrs: AttributeSet?) :
     AppCompatEditText(context, attrs) {
@@ -58,32 +57,6 @@ class ExpiryDateEditText(context: Context, attrs: AttributeSet?) :
                 setText(current)
                 setSelection(if (sel < current.length) sel else current.length)
                 addTextChangedListener(this)
-
-//                validateDate()
-            }
-
-            private fun validateDate() {
-                val text = text.toString()
-                if (text.length == 5) {
-                    val month = text.substring(0, 2).toIntOrNull()
-                    val year = "20" + text.substring(3, 5)
-
-                    if (month == null || month < 1 || month > 12) {
-                        error = "Invalid month"
-                        return
-                    }
-
-                    val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-                    val currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
-
-                    val enteredYear = year.toInt()
-                    error =
-                        if (enteredYear < currentYear || (enteredYear == currentYear && month < currentMonth)) {
-                            "Invalid expiry date"
-                        } else {
-                            null // Clear error if valid
-                        }
-                }
             }
         })
     }

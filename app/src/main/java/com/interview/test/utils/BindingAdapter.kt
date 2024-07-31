@@ -84,38 +84,13 @@ fun setTransactionDate(textView: AppCompatTextView, transactionDate: String?) {
 fun setVisibilityUnlessError(view: View, error: Boolean) {
     view.isVisible = error
 }
-/*
 
-@BindingAdapter("android:text")
-fun setText(editText: AppCompatEditText, value: String?) {
-    if (editText.text.toString() != value) {
-        editText.setText(value)
-    }
+
+@BindingAdapter("transaction_type")
+fun setTransactionType(view: AppCompatImageView, type: String?) {
+    view.setImageResource(
+        if (type.equals("debit", true)) {
+            R.drawable.ic_vd_sent
+        } else R.drawable.ic_vd_received
+    )
 }
-
-@InverseBindingAdapter(attribute = "android:text", event = "android:textAttrChanged")
-fun getText(editText: AppCompatEditText): String {
-    return editText.text.toString()
-}
-
-@BindingAdapter("android:textAttrChanged")
-fun setListeners(editText: AppCompatEditText, attrChange: InverseBindingListener?) {
-    if (attrChange != null) {
-        val newTextWatcher = object : TextWatcherAdapter() {
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                attrChange.onChange()
-            }
-        }
-        val oldTextWatcher = ListenerUtil.trackListener(editText, newTextWatcher, R.id.textWatcher)
-        if (oldTextWatcher != null) {
-            editText.removeTextChangedListener(oldTextWatcher)
-        }
-        editText.addTextChangedListener(newTextWatcher)
-    }
-}
-
-abstract class TextWatcherAdapter : android.text.TextWatcher {
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-    override fun afterTextChanged(s: android.text.Editable?) {}
-}*/

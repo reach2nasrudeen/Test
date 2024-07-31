@@ -10,7 +10,6 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.interview.test.R
 import com.interview.test.databinding.FragmentAddCardBinding
 import com.interview.test.model.CardType
@@ -58,17 +57,12 @@ class AddCardFragment : Fragment() {
             textTitle.setText(R.string.text_add_new_card)
 
             ivBack.setOnClickListener {
-                findNavController().popBackStack()
+                activity?.onBackPressedDispatcher?.onBackPressed()
             }
         }
 
         binding.btnAdd.setOnClickListener {
             Timber.e("uiState--value--->${viewModel.uiState.toModelString()}")
-            /*Timber.e("cardHolderName--value--->${viewModel.cardHolderName.value.toModelString()}")
-            Timber.e("cardNumber--value--->${viewModel.cardNumber.value.toModelString()}")
-            Timber.e("expiry---value--->${viewModel.expiry.value.toModelString()}")
-            Timber.e("cvv---value--->${viewModel.cvv.value.toModelString()}")
-            Timber.e("cardType---value--->${viewModel.cardType.value.toModelString()}")*/
             viewModel.updateUiStateData(
                 cardHolderName = binding.edCardHolderName.text.toString(),
                 cardNumber = binding.edCardNumber.text.toString(),
@@ -107,7 +101,7 @@ class AddCardFragment : Fragment() {
         viewModel.addCardDetail.observe(viewLifecycleOwner) {
             it?.let {
                 homeViewModel.updateCard(it)
-                findNavController().popBackStack()
+                activity?.onBackPressedDispatcher?.onBackPressed()
             }
         }
     }

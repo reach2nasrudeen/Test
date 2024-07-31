@@ -32,9 +32,15 @@
     <string name="text_card_cvv">CVV</string>
     <string name="hint_card_cvv">XXX</string>
     <string name="text_error_card_holder_name_empty">Name cannot be empty</string>
+    <string name="text_error_card_holder_name_min_length">Name must have at least 3 chars</string>
     <string name="text_error_card_number_empty">Card Number cannot be empty</string>
+    <string name="text_error_card_number_length">Card Number must have 16 digits</string>
     <string name="text_error_card_type_empty">Please select Card type</string>
     <string name="text_error_card_expiry_empty">Expiry details cannot be empty</string>
+    <string name="text_error_card_expiry_invalid_month">Invalid Month</string>
+    <string name="text_error_card_expired">Card expired</string>
+    <string name="text_error_card_expiry_invalid">Invalid expiry date</string>
     <string name="text_error_card_cvv_empty">CVV cannot be empty</string>
+    <string name="text_error_card_cvv_length">CVV must have 3 digits</string>
     <string name="text_error_invalid">Invalid</string>
 </resources>

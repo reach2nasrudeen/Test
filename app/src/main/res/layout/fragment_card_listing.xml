@@ -18,11 +18,12 @@
             android:id="@+id/rv_cards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:clipToPadding="false"
             android:orientation="vertical"
+            android:paddingBottom="100dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="3"
-            android:paddingBottom="100dp"
-            android:clipToPadding="false"
             tools:listitem="@layout/item_card" />
     </LinearLayout>
 </layout>

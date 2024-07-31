@@ -25,102 +25,114 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         app:cardBackgroundColor="@color/card_bg"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp">
-
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="25dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_bank_logo"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="-5dp"
-                app:srcCompat="@drawable/db_bank_logo_new" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_bank_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="3dp"
-                android:layout_centerInParent="true"
-                android:layout_toEndOf="@+id/iv_bank_logo"
-                android:text="@{cardItem.bankName}"
-                android:textColor="@color/white"
-                app:bg_luminance="@{luminance}"
-                tools:text="Dutch Bangla Bank" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_card_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    app:bg_luminance="@{luminance}"
-                    app:card_number="@{cardItem.cardNumber}"
-                    tools:text="**** **** **** 1690" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/text_card_category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{cardItem.cardCategory}"
-                        android:textColor="@color/white"
-                        app:bg_luminance="@{luminance}"
-                        tools:text="Platinum Plus" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/text_card_expiry_data"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="@{cardItem.cardExpiryData()}"
-                        android:textColor="@color/white"
-                        android:visibility="@{showCardMemberName ? View.VISIBLE : View.GONE}"
-                        app:bg_luminance="@{luminance}"
-                        tools:ignore="RelativeOverlap"
-                        tools:text="Exp 01/22" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="@{showCardMemberName ? cardItem.cardHolderName : cardItem.cardExpiryData()}"
-                android:textColor="@color/white"
-                app:bg_luminance="@{luminance}"
-                tools:text="Exp 01/22" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_card_type"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:alpha="0.15"
                 app:srcCompat="@drawable/logo_visa"
                 app:tint_luminance="@{luminance}" />
-        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="25dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_bank_logo"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="-5dp"
+                    app:srcCompat="@drawable/db_bank_logo_new" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_bank_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@+id/iv_bank_logo"
+                    android:text="@{cardItem.bankName}"
+                    android:textColor="@color/white"
+                    app:bg_luminance="@{luminance}"
+                    tools:text="Dutch Bangla Bank" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_card_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        app:bg_luminance="@{luminance}"
+                        app:card_number="@{cardItem.cardNumber}"
+                        tools:text="**** **** **** 1690" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_card_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{cardItem.cardCategory}"
+                            android:textColor="@color/white"
+                            app:bg_luminance="@{luminance}"
+                            tools:text="Platinum Plus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_card_expiry_data"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@{cardItem.cardExpiryData()}"
+                            android:textColor="@color/white"
+                            android:visibility="@{showCardMemberName ? View.VISIBLE : View.GONE}"
+                            app:bg_luminance="@{luminance}"
+                            tools:ignore="RelativeOverlap"
+                            tools:text="Exp 01/22" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="@{showCardMemberName ? cardItem.cardHolderName : cardItem.cardExpiryData()}"
+                    android:textColor="@color/white"
+                    app:bg_luminance="@{luminance}"
+                    tools:text="Exp 01/22" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_card_type"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    app:srcCompat="@drawable/logo_visa"
+                    app:tint_luminance="@{luminance}" />
+            </RelativeLayout>
+        </FrameLayout>
 
     </androidx.cardview.widget.CardView>
 </layout>

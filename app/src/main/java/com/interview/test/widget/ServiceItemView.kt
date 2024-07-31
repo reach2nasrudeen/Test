@@ -1,5 +1,6 @@
 package com.interview.test.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.interview.test.R
 
+@SuppressLint("CustomViewStyleable")
 class ServiceItemView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
